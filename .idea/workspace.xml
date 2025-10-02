@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Inici">
-      <change afterPath="$PROJECT_DIR$/src/GSApp/Fonts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GSApp/Mides.java" afterDir="false" />
+    <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Continuar programa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,11 +110,20 @@
       <option name="project" value="LOCAL" />
       <updated>1758891422249</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Continuar programa">
+      <option name="closed" value="true" />
+      <created>1759388248306</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759388248306</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inici" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inici" />
+    <MESSAGE value="Continuar programa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continuar programa" />
   </component>
 </project>
