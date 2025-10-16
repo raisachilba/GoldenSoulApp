@@ -6,6 +6,7 @@ public class GoldenSoulApp extends PApplet {
 
     Colors c;
     Fonts fontsApp;
+    GUI gui;
 
     public static void main(String[] args) {
         PApplet.main("GSApp.GoldenSoulApp");
@@ -18,6 +19,7 @@ public class GoldenSoulApp extends PApplet {
     public void setup(){
         c = new Colors(this);
         fontsApp = new Fonts(this);
+        gui = new GUI(this);
     }
 
     public void draw(){
@@ -35,5 +37,45 @@ public class GoldenSoulApp extends PApplet {
         fill(0, 50, 0);
         textFont(fontsApp.getFirstFont());
         text("Paràgraf de l'app", 50, 580);
+
+        switch(gui.pantallaActual){
+            case INICIAL: gui.dibuixaPantallaInicial(this);
+            break;
+
+            case ABOUT: gui.dibuixaPantallaAbout(this);
+            break;
+
+            case DETALLS: gui.dibuixaPantallaDetalls(this);
+            break;
+        }
+
+        updateCursor(this);
+    }
+
+    public void keyPressed(){
+        if(key == '0'){
+            gui.pantallaActual = GUI.PANTALLA.INICIAL;
+        }
+        else if(key == '1'){
+            gui.pantallaActual = GUI.PANTALLA.DETALLS;
+        }
+        else if(key == '2'){
+            gui.pantallaActual = GUI.PANTALLA.ABOUT;
+        }
+    }
+
+    public void mousePressed(){
+       if(gui.b1.mouseOverButton(this)){
+           System.out.println("B1 has been pressed!!!");
+       }
+    }
+
+    public void updateCursor(PApplet p5){
+        if(gui.b1.updateHandCursor(p5)){
+            cursor(HAND);
+        }
+        else{
+            cursor(ARROW);
+        }
     }
 }

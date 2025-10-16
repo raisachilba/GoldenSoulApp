@@ -10,11 +10,11 @@ public class Colors {
 
     void setColors(PApplet p5){
         this.colors = new int[5];
-        this.colors[0] = p5.color(0xFF503D20);
-        this.colors[1] = p5.color(0xFF3A9B4C);
-        this.colors[2] = p5.color(0xFF503D7E);
-        this.colors[3] = p5.color(0xFF609D2F);
-        this.colors[4] = p5.color(0xFF8FEE2D);
+        this.colors[0] = p5.color(0x7A2A3AAA);
+        this.colors[1] = p5.color(0x7A2A3AAA);
+        this.colors[2] = p5.color(0x7A2A3AAA);
+        this.colors[3] = p5.color(0x7A2A3AAA);
+        this.colors[4] = p5.color(0x7A2A3AAA);
     }
 
     // Getter del número de colors
