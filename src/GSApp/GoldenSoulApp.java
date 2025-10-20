@@ -62,12 +62,14 @@ public class GoldenSoulApp extends PApplet {
         else if(key == '2'){
             gui.pantallaActual = GUI.PANTALLA.ABOUT;
         }
+        gui.tUsuari.keyPressed(key, keyCode);
     }
 
     public void mousePressed(){
        if(gui.b1.mouseOverButton(this)){
            System.out.println("B1 has been pressed!!!");
        }
+       gui.tUsuari.isPressed(this);
     }
 
     public void updateCursor(PApplet p5){
