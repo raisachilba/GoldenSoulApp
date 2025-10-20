@@ -10,7 +10,7 @@ public class Colors {
 
     void setColors(PApplet p5){
         this.colors = new int[5];
-        this.colors[0] = p5.color(0x7A2A3AAA);
+        this.colors[0] = p5.color(0xAA7A2A3A);
         this.colors[1] = p5.color(0x7A2A3AAA);
         this.colors[2] = p5.color(0x7A2A3AAA);
         this.colors[3] = p5.color(0x7A2A3AAA);
@@ -23,7 +23,7 @@ public class Colors {
     }
 
     // Getter del color primari
-    int getFirstColor(){
+    int getRedColor(){
         return  this.colors[0];
     }
 

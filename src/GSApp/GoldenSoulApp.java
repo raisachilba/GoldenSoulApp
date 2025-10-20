@@ -26,6 +26,7 @@ public class GoldenSoulApp extends PApplet {
         background(255);
         c.display(this, 100, 100, width - 200);
 
+        /*
         fill(50);
         textFont(fontsApp.getFirstFont());
         text("Títol de l'app", 50, 410);
@@ -38,8 +39,10 @@ public class GoldenSoulApp extends PApplet {
         textFont(fontsApp.getFirstFont());
         text("Paràgraf de l'app", 50, 580);
 
+         */
+
         switch(gui.pantallaActual){
-            case INICIAL: gui.dibuixaPantallaInicial(this);
+            case INICIAL: gui.dibujaPantallaLogIn(this);
             break;
 
             case ABOUT: gui.dibuixaPantallaAbout(this);
