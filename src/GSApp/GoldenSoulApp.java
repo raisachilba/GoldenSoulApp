@@ -26,21 +26,6 @@ public class GoldenSoulApp extends PApplet {
         background(255);
         c.display(this, 100, 100, width - 200);
 
-        /*
-        fill(50);
-        textFont(fontsApp.getFirstFont());
-        text("Títol de l'app", 50, 410);
-
-        fill(50, 0, 0);
-        textFont(fontsApp.getSecondFont());
-        text("Subtítol de l'app", 50,   490);
-
-        fill(0, 50, 0);
-        textFont(fontsApp.getFirstFont());
-        text("Paràgraf de l'app", 50, 580);
-
-         */
-
         switch(gui.pantallaActual){
             case INICIAL: gui.dibujaPantallaLogIn(this);
             break;
@@ -65,14 +50,16 @@ public class GoldenSoulApp extends PApplet {
         else if(key == '2'){
             gui.pantallaActual = GUI.PANTALLA.ABOUT;
         }
-       // gui.t1.keyPressed(key, keyCode);
+       gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
     }
 
     public void mousePressed(){
-       if(gui.b1.mouseOverButton(this)){
+       /*if(gui.b1.mouseOverButton(this)){
            System.out.println("B1 has been pressed!!!");
        }
-       //gui.t1.isPressed(this);
+        */
+       gui.textFields[0].isPressed(this);
+       gui.textFields[1].isPressed(this);
     }
 
     public void updateCursor(PApplet p5){

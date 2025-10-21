@@ -6,7 +6,7 @@ public class Colors {
 
     int[] colors;
 
-    public Colors(PApplet p5){ this.setColors(p5); }
+    public Colors(PApplet p5){this.setColors(p5); }
 
     void setColors(PApplet p5){
         this.colors = new int[5];
@@ -24,20 +24,32 @@ public class Colors {
 
     // Getter del color primari
     int getRedColor(PApplet p5, int i){
-        int red1 = p5.color(0xFF7A2A3A); //Granate, opacidad al máximo
-        int red2 = p5.color(0xAA7A2A3A); //Granate, menor opacidad
+        int red1 = p5.color(0xFF7A2A3A); //Granate, opacidad 100%
+        int red2 = p5.color(0xAA7A2A3A); //Granate, opacidad 50%
+        int red3 = p5.color(0x6A7A2A3A); //Granate, opacidad 10%
         if(i==1) {
             return red1;
         }
         else if(i==2){
             return red2;
         }
+        else if(i==3){
+            return red3;
+        }
         return (255);
     }
 
     // Getter del color secundari
-    int getSecondColor(){
-        return  this.colors[1];
+    int getGoldColor(PApplet p5, int i){
+        int gold1 = p5.color(0xFFDAA520); //Dorado, opacidad 100%
+        int gold2 = p5.color(0x99DAA520); //Dorado, oacidad 60%
+        if(i==1) {
+            return gold1;
+        }
+        else if(i==2){
+            return gold2;
+        }
+        return (255);
     }
 
     // Getter del color terciari

@@ -4,9 +4,11 @@ import processing.core.PApplet;
 
 public class TextField extends PApplet{
 
+    // Propietats del camp de text
     int x, y, h, w;
 
     // Colors
+    Colors c;
     int bgColor, fgColor, selectedColor, borderColor;
     int borderWeight = 1;
 
@@ -19,9 +21,10 @@ public class TextField extends PApplet{
     // Constructor
     public TextField(PApplet p5, int x, int y, int w, int h) {
         this.x = x; this.y = y; this.w = w; this.h = h;
-        this.bgColor = p5.color(140, 140, 140);
+        c = new Colors(p5);
+        this.bgColor = p5.color(200);
         this.fgColor = p5.color(0, 0, 0);
-        this.selectedColor = p5.color(190, 190, 60);
+        this.selectedColor = p5.color(c.getRedColor(p5,3));
         this.borderColor = p5.color(30, 30, 30);
         this.borderWeight = 1;
     }
@@ -53,7 +56,7 @@ public class TextField extends PApplet{
             } else if (keyCode == 32) {
                 addText(' '); // SPACE
             } else {
-                //Si es lleva això es pot posar el que sigui
+
                 boolean isKeyCapitalLetter = (key >= 'A' && key <= 'Z');
                 boolean isKeySmallLetter = (key >= 'a' && key <= 'z');
                 boolean isKeyNumber = (key >= '0' && key <= '9');
@@ -89,7 +92,7 @@ public class TextField extends PApplet{
         return this.text;
     }
 
-    // Setter del text, modifica el text inicial i es pot posar un text inicial
+    // Setter del text
     public void setText(String t){
         this.text= t;
     }

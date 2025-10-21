@@ -8,7 +8,8 @@ public class Button {
     int fillColor, strokeColor; // Colors del boto (fill / stroke).
     int fillColorOver, fillColorDisabled;  // Colors del boto (actiu / inactiu).
     String textBoto;  // Text
-    public boolean enabled;  // Estat del botó (actiu / inactiu).
+    public boolean enabled;// Estat del botó (actiu / inactiu).
+    Colors c;
 
     // Constructor
     public Button(PApplet p5, String text, float x, float y, float w, float h){
@@ -17,10 +18,11 @@ public class Button {
         this.y = y;
         this.w = w;
         this.h = h;
+        this.c = new Colors(p5);
         this.enabled = true;
-        this.fillColor = p5.color(155, 55, 155);
-        this.fillColorOver = p5.color(255, 55, 155);
-        this.fillColorDisabled = p5.color(150);
+        this.fillColor = p5.color(c.getRedColor(p5,2));
+        this.fillColorOver = p5.color(c.getRedColor(p5, 3));
+        this.fillColorDisabled = p5.color(c.getRedColor(p5,1));
         this.strokeColor = p5.color(0);
     }
 
@@ -61,7 +63,7 @@ public class Button {
         p5.rect(this.x, this.y, this.w, this.h, 10);    // Rectangle del botó
 
         // Text (color, alineació i mida)
-        p5.fill(0); p5.textAlign(p5.CENTER); p5.textSize(20);
+        p5.fill(c.getGoldColor(p5,1)); p5.textAlign(p5.CENTER); p5.textSize(20);
         p5.text(textBoto, this.x + this.w/2, this.y + this.h/2 + 10);
         p5.popStyle();
     }
