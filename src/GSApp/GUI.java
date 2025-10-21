@@ -1,5 +1,9 @@
 package GSApp;
 
+import GSApp.Elementos.Button;
+import GSApp.Elementos.TextField;
+import GSApp.Estetica.Colors;
+import GSApp.Estetica.Fonts;
 import processing.core.PApplet;
 
 public class GUI {
@@ -46,7 +50,8 @@ public class GUI {
 
         b1.display(p5);
 
-        p5.circle(350, p5.height/2, 300);
+        //Logo
+        p5.rect(200, 250, 300, 300);
     }
 
     public void dibuixaPantallaAbout(PApplet p5){

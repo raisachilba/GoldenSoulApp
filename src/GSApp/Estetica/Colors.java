@@ -1,4 +1,4 @@
-package GSApp;
+package GSApp.Estetica;
 
 import processing.core.PApplet;
 
@@ -23,7 +23,7 @@ public class Colors {
     }
 
     // Getter del color primari
-    int getRedColor(PApplet p5, int i){
+    public int getRedColor(PApplet p5, int i){
         int red1 = p5.color(0xFF7A2A3A); //Granate, opacidad 100%
         int red2 = p5.color(0xAA7A2A3A); //Granate, opacidad 50%
         int red3 = p5.color(0x6A7A2A3A); //Granate, opacidad 10%
@@ -40,7 +40,7 @@ public class Colors {
     }
 
     // Getter del color secundari
-    int getGoldColor(PApplet p5, int i){
+    public int getGoldColor(PApplet p5, int i){
         int gold1 = p5.color(0xFFDAA520); //Dorado, opacidad 100%
         int gold2 = p5.color(0x99DAA520); //Dorado, oacidad 60%
         if(i==1) {

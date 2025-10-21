@@ -1,5 +1,7 @@
 package GSApp;
 
+import GSApp.Estetica.Colors;
+import GSApp.Estetica.Fonts;
 import processing.core.PApplet;
 
 public class GoldenSoulApp extends PApplet {

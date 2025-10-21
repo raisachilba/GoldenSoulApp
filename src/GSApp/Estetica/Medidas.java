@@ -1,6 +1,6 @@
-package GSApp;
+package GSApp.Estetica;
 
-public class Mides {
+public class Medidas {
 
     public static float midaTitol = 60;
     public static float midaSubtitol = 54;

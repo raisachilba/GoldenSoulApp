@@ -1,5 +1,6 @@
-package GSApp;
+package GSApp.Elementos;
 
+import GSApp.Estetica.Colors;
 import processing.core.PApplet;
 
 public class TextField extends PApplet{
