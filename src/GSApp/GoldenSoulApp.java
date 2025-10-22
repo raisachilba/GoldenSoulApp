@@ -26,16 +26,15 @@ public class GoldenSoulApp extends PApplet {
 
     public void draw(){
         background(255);
-        c.display(this, 100, 100, width - 200);
 
         switch(gui.pantallaActual){
-            case INICIAL: gui.dibujaPantallaLogIn(this);
+            case LOGIN: gui.dibujaPantallaLogIn(this);
             break;
 
-            case ABOUT: gui.dibuixaPantallaAbout(this);
+            case SIGNIN: gui.dibujaPantallaSignIn(this);
             break;
 
-            case DETALLS: gui.dibuixaPantallaDetalls(this);
+            case PRINCIPAL: gui.dibujaPantallaPrincipal(this);
             break;
         }
 
@@ -44,15 +43,17 @@ public class GoldenSoulApp extends PApplet {
 
     public void keyPressed(){
         if(key == '0'){
-            gui.pantallaActual = GUI.PANTALLA.INICIAL;
+            gui.pantallaActual = GUI.PANTALLA.LOGIN;
         }
         else if(key == '1'){
-            gui.pantallaActual = GUI.PANTALLA.DETALLS;
+            gui.pantallaActual = GUI.PANTALLA.SIGNIN;
         }
         else if(key == '2'){
-            gui.pantallaActual = GUI.PANTALLA.ABOUT;
+            gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
         }
        gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
+       gui.textFields[2].keyPressed(key, keyCode); gui.textFields[3].keyPressed(key, keyCode);
+       gui.textFields[4].keyPressed(key, keyCode);
     }
 
     public void mousePressed(){
@@ -62,6 +63,9 @@ public class GoldenSoulApp extends PApplet {
         */
        gui.textFields[0].isPressed(this);
        gui.textFields[1].isPressed(this);
+       gui.textFields[2].isPressed(this);
+       gui.textFields[3].isPressed(this);
+       gui.textFields[4].isPressed(this);
     }
 
     public void updateCursor(PApplet p5){
