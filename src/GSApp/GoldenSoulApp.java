@@ -57,10 +57,10 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void mousePressed(){
-       /*if(gui.b1.mouseOverButton(this)){
+       if(gui.b1.mouseOverButton(this)){
            System.out.println("B1 has been pressed!!!");
        }
-        */
+
        gui.textFields[0].isPressed(this);
        gui.textFields[1].isPressed(this);
        gui.textFields[2].isPressed(this);

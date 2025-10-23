@@ -33,6 +33,7 @@ public class GUI {
         medida = new Medidas();
         fontsApp = new Fonts(p5);
         this.setTextField(p5);
+        dibujaBotonesMenu(p5);
         pantallaActual = PANTALLA.LOGIN;
     }
 
