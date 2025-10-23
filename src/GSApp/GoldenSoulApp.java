@@ -66,10 +66,14 @@ public class GoldenSoulApp extends PApplet {
        gui.textFields[2].isPressed(this);
        gui.textFields[3].isPressed(this);
        gui.textFields[4].isPressed(this);
+
+       if(gui.bMenu[0].mouseOverButton(this)){
+           print("BOTO MENU 0");
+       }
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(p5)){
+        if(gui.b1.updateHandCursor(p5) || gui.bMenu[0].updateHandCursor(p5)){
             cursor(HAND);
         }
         else{

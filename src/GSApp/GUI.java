@@ -28,13 +28,19 @@ public class GUI {
     public GUI(PApplet p5) {
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 550, 250, 90);
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 700, 250, 70);
-        this.dibujaBotonesMenu(p5);
+        setButtons(p5);
         c = new Colors(p5);
         medida = new Medidas();
         fontsApp = new Fonts(p5);
         this.setTextField(p5);
-        dibujaBotonesMenu(p5);
+
         pantallaActual = PANTALLA.LOGIN;
+    }
+
+    public void setButtons(PApplet p5){
+        bMenu = new Button[6];
+
+        bMenu[0] = new Button(p5,"CALENDARI", 70, 300, 150, 150);
     }
 
     public void dibujaPantallaLogIn(PApplet p5){
@@ -42,6 +48,7 @@ public class GUI {
 
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
+            p5.rectMode(p5.CORNER);
             p5.rect(p5.width/2+170, 150, 400, 80);
             p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFirstFont());
             p5.text("LOG IN", 1110, 210);
@@ -99,21 +106,20 @@ public class GUI {
             p5.text("GOLDEN SOUL DANCE", 600, 130);
         p5.popStyle();
 
-        //No se me dibuija
         dibujaBotonesMenu(p5);
     }
 
     public void dibujaBotonesMenu(PApplet p5){
-        bMenu = new Button[6];
-
-        bMenu[0] = new Button(p5,"t", 100, 400, 100, 100);
+        bMenu[0].display(p5);
     }
 
     public void dibujaLogoBanner(PApplet p5){
 
+        p5.pushMatrix();
         p5.rect(0, 0, 220, 220);
         p5.translate(220, 0);
         p5.rect(0, 0, p5.width, 220);
+        p5.popMatrix();
     }
 
     public void setTextField(PApplet p5){
