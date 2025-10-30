@@ -57,9 +57,6 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void mousePressed(){
-       if(gui.b1.mouseOverButton(this)){
-           System.out.println("B1 has been pressed!!!");
-       }
 
        gui.textFields[0].isPressed(this);
        gui.textFields[1].isPressed(this);
@@ -67,13 +64,13 @@ public class GoldenSoulApp extends PApplet {
        gui.textFields[3].isPressed(this);
        gui.textFields[4].isPressed(this);
 
-       if(gui.bMenu[0].mouseOverButton(this)){
-           print("BOTO MENU 0");
-       }
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(p5) || gui.bMenu[0].updateHandCursor(p5)){
+        if(gui.b1.updateHandCursor(p5) || gui.bMenu[0].updateHandCursor(p5) || gui.bMenu[1].updateHandCursor(p5)
+                || gui.bMenu[2].updateHandCursor(p5) || gui.bMenu[3].updateHandCursor(p5) || gui.bMenu[4].updateHandCursor(p5)
+                || gui.bMenu[5].updateHandCursor(p5)){
+
             cursor(HAND);
         }
         else{

@@ -15,8 +15,8 @@ public class Fonts {
 
     public void setFonts(PApplet p5){
         this.fonts = new PFont[3];
-        this.fonts[0] = p5.createFont("data/Modum.ttf", midaTitol);
-        this.fonts[1] = p5.createFont("data/MonoSpatial.ttf", midaSubtitol);
+        this.fonts[0] = p5.createFont("data/Fonts/Modum.ttf", midaTitol);
+        this.fonts[1] = p5.createFont("data/Fonts/MonoSpatial.ttf", midaSubtitol);
     }
 
     public int getNumFonts() {return this.fonts.length; }

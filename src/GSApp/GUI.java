@@ -6,6 +6,7 @@ import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
 import GSApp.Estetica.Medidas;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class GUI {
 
@@ -14,6 +15,8 @@ public class GUI {
     // Botones: entrar
     Button b1, b2;
     Button[] bMenu;
+    PImage perfil;
+    //Load image perque es png
 
     Colors c;
     Fonts fontsApp;
@@ -32,6 +35,7 @@ public class GUI {
         c = new Colors(p5);
         medida = new Medidas();
         fontsApp = new Fonts(p5);
+        perfil = p5.loadImage("data/Icones/FotoPerfil.png");
         this.setTextField(p5);
 
         pantallaActual = PANTALLA.LOGIN;
@@ -40,7 +44,12 @@ public class GUI {
     public void setButtons(PApplet p5){
         bMenu = new Button[6];
 
-        bMenu[0] = new Button(p5,"CALENDARI", 70, 300, 150, 150);
+        bMenu[0] = new Button(p5,"COMPETICIONES", 70, 300, 150, 150);
+        bMenu[1] = new Button(p5,"TÉCNICA", 260, 300, 150, 150);
+        bMenu[2] = new Button(p5,"ELASTICIDAD", 450, 300, 150, 150);
+        bMenu[3] = new Button(p5,"COORDINACIÓN", 70, 530, 150, 150);
+        bMenu[4] = new Button(p5,"TO-DO LIST", 260, 530, 150, 150);
+        bMenu[5] = new Button(p5,"CALENDARIO", 450, 530, 150, 150);
     }
 
     public void dibujaPantallaLogIn(PApplet p5){
@@ -100,25 +109,36 @@ public class GUI {
 
         dibujaLogoBanner(p5);
 
+        dibujaBotonesMenu(p5);
+
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
-            p5.text("GOLDEN SOUL DANCE", 600, 130);
+            p5.text("GOLDEN SOUL DANCE", 800, 130);
         p5.popStyle();
 
-        dibujaBotonesMenu(p5);
+        p5.pushMatrix();
+        p5.image(perfil, 50, 100);
+        p5.scale(0.8f, 0.8f);
+        p5.popMatrix();
+
     }
 
     public void dibujaBotonesMenu(PApplet p5){
         bMenu[0].display(p5);
+        bMenu[1].display(p5);
+        bMenu[2].display(p5);
+        bMenu[3].display(p5);
+        bMenu[4].display(p5);
+        bMenu[5].display(p5);
     }
 
     public void dibujaLogoBanner(PApplet p5){
 
         p5.pushMatrix();
-        p5.rect(0, 0, 220, 220);
-        p5.translate(220, 0);
-        p5.rect(0, 0, p5.width, 220);
+            p5.rect(0, 0, 220, 220);
+            p5.translate(220, 0);
+            p5.rect(0, 0, p5.width, 220);
         p5.popMatrix();
     }
 
