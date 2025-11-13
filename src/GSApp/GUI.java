@@ -2,6 +2,7 @@ package GSApp;
 
 import GSApp.Elementos.Button;
 import GSApp.Elementos.TextField;
+import GSApp.Elementos.TextList;
 import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
 import GSApp.Estetica.Medidas;
@@ -16,6 +17,11 @@ public class GUI {
     Button b1, b2;
     Button[] bMenu;
     PImage perfil;
+    TextList tList;
+    String[] provincies = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
+            "Guipúzcoa","Islas Baleares","Islas Canarias", "La Coruña", "Madrid", "Málaga", "Murcia",
+            "Sevilla", "Toledo", "Valencia", "Valladolid", "Vizcaya", "Zaragoza"};
+
     //Load image perque es png
 
     Colors c;
@@ -37,6 +43,8 @@ public class GUI {
         fontsApp = new Fonts(p5);
         perfil = p5.loadImage("data/Icones/FotoPerfil.png");
         this.setTextField(p5);
+
+        tList = new TextList(p5, provincies, p5.width/2+170, 500, 400, 50);
 
         pantallaActual = PANTALLA.LOGIN;
     }
@@ -96,16 +104,19 @@ public class GUI {
 
         textFields[2].display(p5); textFields[3].display(p5); textFields[4].display(p5);
 
+
         // Queda afegir el petit panell amb les diferents opcions per escollir la provincia
 
         b2.display(p5);
 
         //Logo
         p5.rect(200, 250, 300, 300);
+
+        tList.display(p5);
     }
 
     public void dibujaPantallaPrincipal(PApplet p5){
-        p5.background(255);
+        p5.background(240);
 
         dibujaLogoBanner(p5);
 
@@ -118,8 +129,8 @@ public class GUI {
         p5.popStyle();
 
         p5.pushMatrix();
-        p5.image(perfil, 50, 100);
-        p5.scale(0.8f, 0.8f);
+            p5.scale(0.1f, 0.1f);
+            p5.image(perfil, 200, 100);
         p5.popMatrix();
 
     }

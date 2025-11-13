@@ -54,6 +54,11 @@ public class GoldenSoulApp extends PApplet {
        gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
        gui.textFields[2].keyPressed(key, keyCode); gui.textFields[3].keyPressed(key, keyCode);
        gui.textFields[4].keyPressed(key, keyCode);
+
+        if(gui.tList.getTextField().mouseOverTextField(this)){
+            gui.tList.getTextField().keyPressed(key, (int)keyCode);
+            gui.tList.update(this);
+        }
     }
 
     public void mousePressed(){
@@ -63,6 +68,9 @@ public class GoldenSoulApp extends PApplet {
        gui.textFields[2].isPressed(this);
        gui.textFields[3].isPressed(this);
        gui.textFields[4].isPressed(this);
+
+        gui.tList.getTextField().isPressed(this);
+        gui.tList.buttonPressed(this);
 
     }
 
