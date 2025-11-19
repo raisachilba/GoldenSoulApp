@@ -1,8 +1,6 @@
 package GSApp;
 
-import GSApp.Elementos.Button;
-import GSApp.Elementos.TextField;
-import GSApp.Elementos.TextList;
+import GSApp.Elementos.*;
 import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
 import GSApp.Estetica.Medidas;
@@ -11,18 +9,16 @@ import processing.core.PImage;
 
 public class GUI {
 
-    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA};
+    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION};
 
     // Botones: entrar, registrarse, volver a la pantalla principal
     Button b1, b2, b3;
     Button[] bMenu;
-    PImage perfil;
+    PImage perfil; //Load image perque es png
     TextList tList;
     String[] provincies = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
             "Guipúzcoa","Islas Baleares","Islas Canarias", "La Coruña", "Madrid", "Málaga", "Murcia",
             "Sevilla", "Toledo", "Valencia", "Valladolid", "Vizcaya", "Zaragoza"};
-
-    //Load image perque es png
 
     Colors c;
     Fonts fontsApp;
@@ -32,13 +28,16 @@ public class GUI {
 
     Medidas medida;
 
+    CalendarPlus calendario;
+
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 550, 250, 90);
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
-        b3 = new Button(p5, "VOLVER ATRÁS", 250, 860, 250, 70);
+        b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 120, 30);
         setButtons(p5);
+        calendario = new CalendarPlus(p5, 600, 400, 600, 700);
         c = new Colors(p5);
         medida = new Medidas();
         fontsApp = new Fonts(p5);
@@ -57,7 +56,7 @@ public class GUI {
             p5.fill(c.getRedColor(p5, 1));
             p5.rectMode(p5.CORNER);
             p5.rect(p5.width/2+170, 150, 400, 80);
-            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFirstFont());
+            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFirstFont()); //Ús de fonts
             p5.text("LOG IN", 1110, 210);
         p5.popStyle();
 
@@ -81,7 +80,7 @@ public class GUI {
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
             p5.rect(p5.width/2+170, 50, 400, 80);
-            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFirstFont());
+            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFirstFont()); //Ús de fonts
             p5.text("SIGN IN", 1110, 110);
         p5.popStyle();
 
@@ -112,9 +111,12 @@ public class GUI {
 
         dibujaBotonesMenu(p5);
 
+        //No se veu; es dibuixa però no es veu
+        calendario.display(p5);
+
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
-            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontTitulo()); //ÚS FONTS
             p5.text("GOLDEN SOUL DANCE", 800, 130);
         p5.popStyle();
 
@@ -136,6 +138,7 @@ public class GUI {
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
             p5.text("CALENDARIO COMPETICIONES", 800, 130);
         p5.popStyle();
     }
@@ -145,13 +148,49 @@ public class GUI {
 
         dibujaLogoBanner(p5);
 
-        dibujaBotonesMenu(p5);
         b3.display(p5);
+
+        dibujaVideoExplica(p5);
 
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
             p5.text("TÉCNICA", 800, 130);
+        p5.popStyle();
+    }
+
+    public void dibujaPantallaElasticidad(PApplet p5){
+        p5.background(240);
+
+        dibujaLogoBanner(p5);
+
+        b3.display(p5);
+
+        dibujaVideoExplica(p5);
+
+        p5.pushStyle();
+            p5.textAlign(p5.CENTER);
+            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
+            p5.text("ELASTICIDAD", 800, 130);
+        p5.popStyle();
+    }
+
+    public void dibujaPantallaCoordinacion(PApplet p5){
+        p5.background(240);
+
+        dibujaLogoBanner(p5);
+
+        b3.display(p5);
+
+        dibujaVideoExplica(p5);
+
+        p5.pushStyle();
+            p5.textAlign(p5.CENTER);
+            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
+            p5.text("COORDINACIÓN", 800, 130);
         p5.popStyle();
     }
 
@@ -199,6 +238,31 @@ public class GUI {
         textFields[5] = new TextField(p5, p5.width/2+170, 480, 400, 50);
         textFields[6] = new TextField(p5, p5.width/2+170, 680, 400, 50);
         textFields[7] = new TextField(p5, p5.width/2+170, 780, 400, 50);
+    }
+
+    public void dibujaVideoExplica(PApplet p5){
+
+        p5.pushStyle();
+
+            //Introdueix el títol del vídeo explicatiu
+            p5.textSize(medida.midaSubtitol);p5.fill(c.getGoldColor(p5,1));
+            p5.text("VÍDEO 1", 120, 650);
+            p5.text("VÍDEO 2", 570, 650);
+            p5.text("VÍDEO 3", 1020, 650);
+
+            //Explica una mica per a que serveixen els exercicis (mini resum vídeo)
+            p5.textSize(medida.midaParagraf); p5.fill(0);
+            p5.text("Explicación de los ejercicios", 120, 670);
+            p5.text("Explicación de los ejercicios", 570, 670);
+            p5.text("Explicación de los ejercicios", 1020, 670);
+
+            //Dibuixa el lloc en el que s'han de dibuixar les fotos i text
+            p5.fill(c.getRedColor(p5, 3));
+            p5.rect(100, 320, 400, 500);
+            p5.rect(550, 320, 400, 500);
+            p5.rect(1000, 320, 400, 500);
+
+        p5.popStyle();
     }
 
 }

@@ -42,6 +42,10 @@ public class GoldenSoulApp extends PApplet {
 
             case TECNICA: gui.dibujaPantallaTecnica(this);
                 break;
+            case ELASTICIDAD: gui.dibujaPantallaElasticidad(this);
+                break;
+            case COORDINACION: gui.dibujaPantallaCoordinacion(this);
+                break;
         }
 
         updateCursor(this);
@@ -63,13 +67,19 @@ public class GoldenSoulApp extends PApplet {
         else if(key == '4'){
             gui.pantallaActual = GUI.PANTALLA.TECNICA;
         }
+        else if(key == '5'){
+            gui.pantallaActual = GUI.PANTALLA.ELASTICIDAD;
+        }
+        else if(key == '6'){
+            gui.pantallaActual = GUI.PANTALLA.COORDINACION;
+        }
        gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
        gui.textFields[2].keyPressed(key, keyCode); gui.textFields[3].keyPressed(key, keyCode);
        gui.textFields[4].keyPressed(key, keyCode); gui.textFields[5].keyPressed(key, keyCode);
        gui.textFields[6].keyPressed(key, keyCode); gui.textFields[7].keyPressed(key, keyCode);
 
         if(gui.tList.getTextField().mouseOverTextField(this)){
-            gui.tList.getTextField().keyPressed(key, (int)keyCode);
+            gui.tList.getTextField().keyPressed(key, keyCode);
             gui.tList.update(this);
         }
     }
