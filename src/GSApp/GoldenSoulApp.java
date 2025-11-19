@@ -15,7 +15,7 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void settings(){
-        size(1470, 810);
+        fullScreen();
     }
 
     public void setup(){
@@ -36,6 +36,12 @@ public class GoldenSoulApp extends PApplet {
 
             case PRINCIPAL: gui.dibujaPantallaPrincipal(this);
             break;
+
+            case COMPETICIONES: gui.dibujaPantallaCalendComps(this);
+                break;
+
+            case TECNICA: gui.dibujaPantallaTecnica(this);
+                break;
         }
 
         updateCursor(this);
@@ -51,9 +57,16 @@ public class GoldenSoulApp extends PApplet {
         else if(key == '2'){
             gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
         }
+        else if(key == '3'){
+            gui.pantallaActual = GUI.PANTALLA.COMPETICIONES;
+        }
+        else if(key == '4'){
+            gui.pantallaActual = GUI.PANTALLA.TECNICA;
+        }
        gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
        gui.textFields[2].keyPressed(key, keyCode); gui.textFields[3].keyPressed(key, keyCode);
-       gui.textFields[4].keyPressed(key, keyCode);
+       gui.textFields[4].keyPressed(key, keyCode); gui.textFields[5].keyPressed(key, keyCode);
+       gui.textFields[6].keyPressed(key, keyCode); gui.textFields[7].keyPressed(key, keyCode);
 
         if(gui.tList.getTextField().mouseOverTextField(this)){
             gui.tList.getTextField().keyPressed(key, (int)keyCode);
@@ -68,6 +81,9 @@ public class GoldenSoulApp extends PApplet {
        gui.textFields[2].isPressed(this);
        gui.textFields[3].isPressed(this);
        gui.textFields[4].isPressed(this);
+       gui.textFields[5].isPressed(this);
+       gui.textFields[6].isPressed(this);
+       gui.textFields[7].isPressed(this);
 
         gui.tList.getTextField().isPressed(this);
         gui.tList.buttonPressed(this);
@@ -75,7 +91,7 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(p5) || gui.bMenu[0].updateHandCursor(p5) || gui.bMenu[1].updateHandCursor(p5)
+        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.bMenu[0].updateHandCursor(p5) || gui.bMenu[1].updateHandCursor(p5)
                 || gui.bMenu[2].updateHandCursor(p5) || gui.bMenu[3].updateHandCursor(p5) || gui.bMenu[4].updateHandCursor(p5)
                 || gui.bMenu[5].updateHandCursor(p5)){
 

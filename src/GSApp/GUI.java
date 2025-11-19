@@ -11,10 +11,10 @@ import processing.core.PImage;
 
 public class GUI {
 
-    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL};
+    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA};
 
-    // Botones: entrar
-    Button b1, b2;
+    // Botones: entrar, registrarse, volver a la pantalla principal
+    Button b1, b2, b3;
     Button[] bMenu;
     PImage perfil;
     TextList tList;
@@ -36,7 +36,8 @@ public class GUI {
 
     public GUI(PApplet p5) {
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 550, 250, 90);
-        b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 700, 250, 70);
+        b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
+        b3 = new Button(p5, "VOLVER ATRÁS", 250, 860, 250, 70);
         setButtons(p5);
         c = new Colors(p5);
         medida = new Medidas();
@@ -44,20 +45,9 @@ public class GUI {
         perfil = p5.loadImage("data/Icones/FotoPerfil.png");
         this.setTextField(p5);
 
-        tList = new TextList(p5, provincies, p5.width/2+170, 500, 400, 50);
+        tList = new TextList(p5, provincies, p5.width/2+170, 580, 400, 50);
 
         pantallaActual = PANTALLA.LOGIN;
-    }
-
-    public void setButtons(PApplet p5){
-        bMenu = new Button[6];
-
-        bMenu[0] = new Button(p5,"COMPETICIONES", 70, 300, 150, 150);
-        bMenu[1] = new Button(p5,"TÉCNICA", 260, 300, 150, 150);
-        bMenu[2] = new Button(p5,"ELASTICIDAD", 450, 300, 150, 150);
-        bMenu[3] = new Button(p5,"COORDINACIÓN", 70, 530, 150, 150);
-        bMenu[4] = new Button(p5,"TO-DO LIST", 260, 530, 150, 150);
-        bMenu[5] = new Button(p5,"CALENDARIO", 450, 530, 150, 150);
     }
 
     public void dibujaPantallaLogIn(PApplet p5){
@@ -102,10 +92,10 @@ public class GUI {
             p5.triangle(0, -100, 80, 0, 0, 100);
         p5.popMatrix();
 
-        textFields[2].display(p5); textFields[3].display(p5); textFields[4].display(p5);
+        textFields[2].display(p5); textFields[3].display(p5); textFields[4].display(p5); textFields[5].display(p5);
+        textFields[6].display(p5); textFields[7].display(p5);
 
 
-        // Queda afegir el petit panell amb les diferents opcions per escollir la provincia
 
         b2.display(p5);
 
@@ -135,6 +125,47 @@ public class GUI {
 
     }
 
+    public void dibujaPantallaCalendComps(PApplet p5){
+        p5.background(240);
+
+        dibujaLogoBanner(p5);
+
+        dibujaBotonesMenu(p5);
+        b3.display(p5);
+
+        p5.pushStyle();
+            p5.textAlign(p5.CENTER);
+            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.text("CALENDARIO COMPETICIONES", 800, 130);
+        p5.popStyle();
+    }
+
+    public void dibujaPantallaTecnica(PApplet p5){
+        p5.background(240);
+
+        dibujaLogoBanner(p5);
+
+        dibujaBotonesMenu(p5);
+        b3.display(p5);
+
+        p5.pushStyle();
+            p5.textAlign(p5.CENTER);
+            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.text("TÉCNICA", 800, 130);
+        p5.popStyle();
+    }
+
+    public void setButtons(PApplet p5){
+        bMenu = new Button[7];
+
+        bMenu[0] = new Button(p5,"COMPETICIONES", 70, 300, 150, 150);
+        bMenu[1] = new Button(p5,"TÉCNICA", 260, 300, 150, 150);
+        bMenu[2] = new Button(p5,"ELASTICIDAD", 450, 300, 150, 150);
+        bMenu[3] = new Button(p5,"COORDINACIÓN", 70, 530, 150, 150);
+        bMenu[4] = new Button(p5,"TO-DO LIST", 260, 530, 150, 150);
+        bMenu[5] = new Button(p5,"CALENDARIO", 450, 530, 150, 150);
+    }
+
     public void dibujaBotonesMenu(PApplet p5){
         bMenu[0].display(p5);
         bMenu[1].display(p5);
@@ -142,6 +173,7 @@ public class GUI {
         bMenu[3].display(p5);
         bMenu[4].display(p5);
         bMenu[5].display(p5);
+
     }
 
     public void dibujaLogoBanner(PApplet p5){
@@ -154,16 +186,19 @@ public class GUI {
     }
 
     public void setTextField(PApplet p5){
-        textFields = new TextField[5];
+        textFields = new TextField[8];
 
         //Text field LOG IN
         textFields[0] = new TextField(p5, p5.width/2+170, 310, 400, 60);
         textFields[1] = new TextField(p5, p5.width/2+170, 410, 400, 60);
 
         //Text field SIGN IN
-        textFields[2] = new TextField(p5, p5.width/2+170, 200, 400, 50);
-        textFields[3] = new TextField(p5, p5.width/2+170, 300, 400, 50);
-        textFields[4] = new TextField(p5, p5.width/2+170, 400, 400, 50);
+        textFields[2] = new TextField(p5, p5.width/2+170, 180, 400, 50);
+        textFields[3] = new TextField(p5, p5.width/2+170, 280, 400, 50);
+        textFields[4] = new TextField(p5, p5.width/2+170, 380, 400, 50);
+        textFields[5] = new TextField(p5, p5.width/2+170, 480, 400, 50);
+        textFields[6] = new TextField(p5, p5.width/2+170, 680, 400, 50);
+        textFields[7] = new TextField(p5, p5.width/2+170, 780, 400, 50);
     }
 
 }
