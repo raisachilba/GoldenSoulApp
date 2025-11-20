@@ -8,7 +8,7 @@ public class CalendarPlus extends Calendar{
     public Button bNext, bPrev, bOK;
 
     // Visibilitat del calendari
-    boolean visible = false;
+    boolean visible = true;
 
     // Constructor
     public CalendarPlus(PApplet p5, int x, int y, int w, int h) {

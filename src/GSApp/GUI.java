@@ -30,6 +30,8 @@ public class GUI {
 
     CalendarPlus calendario;
 
+    Card tecnica1;
+
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
@@ -37,7 +39,8 @@ public class GUI {
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
         b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 120, 30);
         setButtons(p5);
-        calendario = new CalendarPlus(p5, 600, 400, 600, 700);
+        calendario = new CalendarPlus(p5, 800, 350, 500, 600);
+        tecnica1 = new Card(p5, "FOTO 1", 100, 320, 400, 500);
         c = new Colors(p5);
         medida = new Medidas();
         fontsApp = new Fonts(p5);
@@ -111,7 +114,6 @@ public class GUI {
 
         dibujaBotonesMenu(p5);
 
-        //No se veu; es dibuixa però no es veu
         calendario.display(p5);
 
         p5.pushStyle();
@@ -122,7 +124,7 @@ public class GUI {
 
         p5.pushMatrix();
             p5.scale(0.1f, 0.1f);
-            p5.image(perfil, 200, 100);
+            p5.image(perfil, 600, 100);
         p5.popMatrix();
 
     }
@@ -131,6 +133,8 @@ public class GUI {
         p5.background(240);
 
         dibujaLogoBanner(p5);
+
+        calendario.display(p5);
 
         dibujaBotonesMenu(p5);
         b3.display(p5);
@@ -150,6 +154,7 @@ public class GUI {
 
         b3.display(p5);
 
+        tecnica1.display(p5);
         dibujaVideoExplica(p5);
 
         p5.pushStyle();
@@ -246,19 +251,19 @@ public class GUI {
 
             //Introdueix el títol del vídeo explicatiu
             p5.textSize(medida.midaSubtitol);p5.fill(c.getGoldColor(p5,1));
-            p5.text("VÍDEO 1", 120, 650);
+            //p5.text("VÍDEO 1", 120, 650);
             p5.text("VÍDEO 2", 570, 650);
             p5.text("VÍDEO 3", 1020, 650);
 
             //Explica una mica per a que serveixen els exercicis (mini resum vídeo)
             p5.textSize(medida.midaParagraf); p5.fill(0);
-            p5.text("Explicación de los ejercicios", 120, 670);
+            //p5.text("Explicación de los ejercicios", 120, 670);
             p5.text("Explicación de los ejercicios", 570, 670);
             p5.text("Explicación de los ejercicios", 1020, 670);
 
             //Dibuixa el lloc en el que s'han de dibuixar les fotos i text
             p5.fill(c.getRedColor(p5, 3));
-            p5.rect(100, 320, 400, 500);
+            //p5.rect(100, 320, 400, 500);
             p5.rect(550, 320, 400, 500);
             p5.rect(1000, 320, 400, 500);
 

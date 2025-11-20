@@ -1,5 +1,6 @@
 package GSApp.Elementos;
 
+import GSApp.Estetica.Colors;
 import processing.core.PApplet;
 
 public class DayButton {
@@ -12,6 +13,8 @@ public class DayButton {
 
     // Estats del botó
     boolean selected, enabled;
+
+    Colors c;
 
     // Constructor
     public DayButton(float x, float y, float w, float h, int d, int m, int a){
@@ -36,7 +39,7 @@ public class DayButton {
     public void display(PApplet p5){
         p5.pushStyle();
         if(enabled){
-            p5.fill(255);
+            p5.fill(255, 0, 0);
         }
         else{
             p5.fill(100);
