@@ -52,6 +52,8 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void keyPressed(){
+
+        //aïllar botons i text fields per cada pantalla
         if(key == '0'){
             gui.pantallaActual = GUI.PANTALLA.LOGIN;
         }
@@ -86,6 +88,7 @@ public class GoldenSoulApp extends PApplet {
 
     public void mousePressed(){
 
+        //aïllar els botons i text fields segons pantalles
        gui.textFields[0].isPressed(this);
        gui.textFields[1].isPressed(this);
        gui.textFields[2].isPressed(this);

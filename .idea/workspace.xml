@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Continuar programa">
-      <change afterPath="$PROJECT_DIR$/src/GSApp/Elementos/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GSApp/Elementos/TestCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/Elementos/CalendarPlus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Elementos/CalendarPlus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/Elementos/DayButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Elementos/DayButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GSApp/Elementos/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Elementos/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GSApp/Estetica/Fonts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Estetica/Fonts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GSApp/Estetica/Medidas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Estetica/Medidas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GSApp/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,19 +50,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.GoldenSoulApp.executor": "Run",
-    "Application.TestCard.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/Users/raisachilba/IdeaProjects/GoldenSoulApp/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.GoldenSoulApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestCard.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/raisachilba/IdeaProjects/GoldenSoulApp/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data/Fonts" />
@@ -256,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763576875779</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Continuar programa">
+      <option name="closed" value="true" />
+      <created>1763628457763</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1763628457763</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

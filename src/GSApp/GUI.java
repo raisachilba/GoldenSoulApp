@@ -7,6 +7,8 @@ import GSApp.Estetica.Medidas;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import static GSApp.Estetica.Medidas.midaParagraf;
+
 public class GUI {
 
     public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION};
@@ -30,7 +32,7 @@ public class GUI {
 
     CalendarPlus calendario;
 
-    Card tecnica1;
+    Card[] videoExplica;
 
     public PANTALLA pantallaActual;
 
@@ -40,7 +42,9 @@ public class GUI {
         b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 120, 30);
         setButtons(p5);
         calendario = new CalendarPlus(p5, 800, 350, 500, 600);
-        tecnica1 = new Card(p5, "FOTO 1", 100, 320, 400, 500);
+
+        this.dibujaVideoExplica(p5);
+
         c = new Colors(p5);
         medida = new Medidas();
         fontsApp = new Fonts(p5);
@@ -59,7 +63,7 @@ public class GUI {
             p5.fill(c.getRedColor(p5, 1));
             p5.rectMode(p5.CORNER);
             p5.rect(p5.width/2+170, 150, 400, 80);
-            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFirstFont()); //Ús de fonts
+            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontLogIn()); //Ús de fonts
             p5.text("LOG IN", 1110, 210);
         p5.popStyle();
 
@@ -69,6 +73,12 @@ public class GUI {
             p5.translate(p5.width/2, p5.height/2);
             p5.triangle(0, -100, 80, 0, 0, 100);
         p5.popMatrix();
+
+        p5.pushStyle();
+            p5.fill(0); p5.textSize(midaParagraf);
+            p5.text("Usuario", p5.width/2+170, 300);
+            p5.text("Contraseña", p5.width/2+170, 400);
+        p5.popStyle();
 
         textFields[0].display(p5); textFields[1].display(p5);
 
@@ -83,7 +93,7 @@ public class GUI {
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
             p5.rect(p5.width/2+170, 50, 400, 80);
-            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFirstFont()); //Ús de fonts
+            p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontLogIn()); //Ús de fonts
             p5.text("SIGN IN", 1110, 110);
         p5.popStyle();
 
@@ -126,7 +136,6 @@ public class GUI {
             p5.scale(0.1f, 0.1f);
             p5.image(perfil, 600, 100);
         p5.popMatrix();
-
     }
 
     public void dibujaPantallaCalendComps(PApplet p5){
@@ -154,7 +163,6 @@ public class GUI {
 
         b3.display(p5);
 
-        tecnica1.display(p5);
         dibujaVideoExplica(p5);
 
         p5.pushStyle();
@@ -248,25 +256,12 @@ public class GUI {
     public void dibujaVideoExplica(PApplet p5){
 
         p5.pushStyle();
+            videoExplica = new Card[3];
+            videoExplica[0] = new Card(p5, "VÍDEO 1", 100, 320, 400, 500);
+            videoExplica[1] = new Card(p5, "VÍDEO 2", 550, 320, 400, 500);
+            videoExplica[2] = new Card(p5, "VÍDEO 3", 1000, 320, 400, 500);
 
-            //Introdueix el títol del vídeo explicatiu
-            p5.textSize(medida.midaSubtitol);p5.fill(c.getGoldColor(p5,1));
-            //p5.text("VÍDEO 1", 120, 650);
-            p5.text("VÍDEO 2", 570, 650);
-            p5.text("VÍDEO 3", 1020, 650);
-
-            //Explica una mica per a que serveixen els exercicis (mini resum vídeo)
-            p5.textSize(medida.midaParagraf); p5.fill(0);
-            //p5.text("Explicación de los ejercicios", 120, 670);
-            p5.text("Explicación de los ejercicios", 570, 670);
-            p5.text("Explicación de los ejercicios", 1020, 670);
-
-            //Dibuixa el lloc en el que s'han de dibuixar les fotos i text
-            p5.fill(c.getRedColor(p5, 3));
-            //p5.rect(100, 320, 400, 500);
-            p5.rect(550, 320, 400, 500);
-            p5.rect(1000, 320, 400, 500);
-
+            videoExplica[0].display(p5); videoExplica[1].display(p5); videoExplica[2].display(p5);
         p5.popStyle();
     }
 
