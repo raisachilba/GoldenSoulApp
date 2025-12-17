@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Continuar programa">
+      <change afterPath="$PROJECT_DIR$/data/Logo/LogoGranateLargo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Logo/LogoNegroLargo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Logo/LogoSinFondoLargo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/Elementos/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Elementos/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/Estetica/Fonts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Estetica/Fonts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/Estetica/Medidas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Estetica/Medidas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GSApp/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +64,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/Logo" />
       <recent name="$PROJECT_DIR$/data/Fonts" />
       <recent name="$PROJECT_DIR$/data/Icones" />
       <recent name="$PROJECT_DIR$/data" />
@@ -264,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763628457763</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Continuar programa">
+      <option name="closed" value="true" />
+      <created>1763733608682</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1763733608682</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

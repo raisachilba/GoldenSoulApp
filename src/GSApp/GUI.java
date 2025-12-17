@@ -16,7 +16,7 @@ public class GUI {
     // Botones: entrar, registrarse, volver a la pantalla principal
     Button b1, b2, b3;
     Button[] bMenu;
-    PImage perfil; //Load image perque es png
+    PImage perfil, logoLargoN, logoPequenoN; //Load image perque es png
     TextList tList;
     String[] provincies = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
             "Guipúzcoa","Islas Baleares","Islas Canarias", "La Coruña", "Madrid", "Málaga", "Murcia",
@@ -49,6 +49,8 @@ public class GUI {
         medida = new Medidas();
         fontsApp = new Fonts(p5);
         perfil = p5.loadImage("data/Icones/FotoPerfil.png");
+        logoLargoN = p5.loadImage("data/Logo/LogoNegroLargo.png");
+        logoPequenoN = p5.loadImage("data/Logo/LogoNegroPequeño.png");
         this.setTextField(p5);
 
         tList = new TextList(p5, provincies, p5.width/2+170, 580, 400, 50);
@@ -85,7 +87,11 @@ public class GUI {
         b1.display(p5);
 
         //Logo
-        p5.rect(200, 250, 300, 300);
+        p5.pushMatrix();
+            p5.scale(0.3f, 0.3f);
+            p5.image(logoPequenoN, 200, 250);
+        p5.popMatrix();
+        //p5.rect(200, 250, 300, 300);
     }
 
     public void dibujaPantallaSignIn(PApplet p5){
