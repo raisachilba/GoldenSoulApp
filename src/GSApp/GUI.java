@@ -16,7 +16,7 @@ public class GUI {
     // Botones: entrar, registrarse, volver a la pantalla principal
     Button b1, b2, b3;
     Button[] bMenu;
-    PImage perfil, logoLargoN, logoPequenoN; //Load image perque es png
+    PImage perfil, logoLogIn, logoPrincipal, logoCompeticiones; //Load image perque es png
     TextList tList;
     String[] provincies = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
             "Guipúzcoa","Islas Baleares","Islas Canarias", "La Coruña", "Madrid", "Málaga", "Murcia",
@@ -49,8 +49,9 @@ public class GUI {
         medida = new Medidas();
         fontsApp = new Fonts(p5);
         perfil = p5.loadImage("data/Icones/FotoPerfil.png");
-        logoLargoN = p5.loadImage("data/Logo/LogoNegroLargo.png");
-        logoPequenoN = p5.loadImage("data/Logo/LogoNegroPequeño.png");
+        logoLogIn = p5.loadImage("data/Logo/LogoLogInNegro.png");
+        logoPrincipal = p5.loadImage("data/Logo/LogoPantallaPrincipalN.png");
+        logoCompeticiones = p5.loadImage("data/Logo/LogoCompeticionesGranate.png");
         this.setTextField(p5);
 
         tList = new TextList(p5, provincies, p5.width/2+170, 580, 400, 50);
@@ -87,10 +88,7 @@ public class GUI {
         b1.display(p5);
 
         //Logo
-        p5.pushMatrix();
-            p5.scale(0.3f, 0.3f);
-            p5.image(logoPequenoN, 200, 250);
-        p5.popMatrix();
+        p5.image(logoLogIn, 200, 250);
         //p5.rect(200, 250, 300, 300);
     }
 
@@ -236,8 +234,15 @@ public class GUI {
 
     public void dibujaLogoBanner(PApplet p5){
 
+        if(pantallaActual == PANTALLA.PRINCIPAL) {
+            p5.image(logoPrincipal, 0, 0);
+        }
+        else if (pantallaActual == PANTALLA.COMPETICIONES){
+            p5.image(logoCompeticiones, 0, 0);
+        }
+
         p5.pushMatrix();
-            p5.rect(0, 0, 220, 220);
+            //p5.rect(0, 0, 220, 220);
             p5.translate(220, 0);
             p5.rect(0, 0, p5.width, 220);
         p5.popMatrix();
