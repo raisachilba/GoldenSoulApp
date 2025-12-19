@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Continuar programa">
-      <change afterPath="$PROJECT_DIR$/data/Logo/LogoCompeticionesGranate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/Logo/LogoLogInNegro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/Logo/LogoPantallaPrincipalN.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Logo/LogoGranateLargo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Logo/LogoNegroLargo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Logo/LogoSinFondoLargo.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GSApp/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -283,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765979845040</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Continuar programa">
+      <option name="closed" value="true" />
+      <created>1766047795784</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1766047795784</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

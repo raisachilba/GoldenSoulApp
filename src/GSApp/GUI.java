@@ -37,7 +37,7 @@ public class GUI {
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
-        b1 = new Button(p5, "ENTRAR", p5.width/2+250, 550, 250, 90);
+        b1 = new Button(p5, "ENTRAR", p5.width/2+250, 650, 250, 90);
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
         b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 120, 30);
         setButtons(p5);
@@ -65,9 +65,9 @@ public class GUI {
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
             p5.rectMode(p5.CORNER);
-            p5.rect(p5.width/2+170, 150, 400, 80);
+            p5.rect(p5.width/2+170, 260, 400, 80);
             p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontLogIn()); //Ús de fonts
-            p5.text("LOG IN", 1110, 210);
+            p5.text("LOG IN", 1110, 320);
         p5.popStyle();
 
         p5.rect(0, 0, p5.width/2, p5.height);
@@ -79,8 +79,8 @@ public class GUI {
 
         p5.pushStyle();
             p5.fill(0); p5.textSize(midaParagraf);
-            p5.text("Usuario", p5.width/2+170, 300);
-            p5.text("Contraseña", p5.width/2+170, 400);
+            p5.text("Usuario", p5.width/2+170, 390);
+            p5.text("Contraseña", p5.width/2+170, 490);
         p5.popStyle();
 
         textFields[0].display(p5); textFields[1].display(p5);
@@ -88,8 +88,7 @@ public class GUI {
         b1.display(p5);
 
         //Logo
-        p5.image(logoLogIn, 200, 250);
-        //p5.rect(200, 250, 300, 300);
+        p5.image(logoLogIn, 200, 330);
     }
 
     public void dibujaPantallaSignIn(PApplet p5){
@@ -252,8 +251,8 @@ public class GUI {
         textFields = new TextField[8];
 
         //Text field LOG IN
-        textFields[0] = new TextField(p5, p5.width/2+170, 310, 400, 60);
-        textFields[1] = new TextField(p5, p5.width/2+170, 410, 400, 60);
+        textFields[0] = new TextField(p5, p5.width/2+170, 400, 400, 60);
+        textFields[1] = new TextField(p5, p5.width/2+170, 500, 400, 60);
 
         //Text field SIGN IN
         textFields[2] = new TextField(p5, p5.width/2+170, 180, 400, 50);
