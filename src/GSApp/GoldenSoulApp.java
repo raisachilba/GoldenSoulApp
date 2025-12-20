@@ -89,6 +89,37 @@ public class GoldenSoulApp extends PApplet {
     public void mousePressed(){
 
         //aïllar els botons i text fields segons pantalles
+        if(gui.b1.isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+        }
+        else if(gui.b4.isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.SIGNIN;
+        }
+        else if(gui.b2.isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+        }
+        else if (gui.b3.isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+        }
+        else if (gui.bMenu[0].isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.COMPETICIONES;
+        }
+        else if (gui.bMenu[1].isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.TECNICA;
+        }
+        else if (gui.bMenu[2].isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.ELASTICIDAD;
+        }
+        else if (gui.bMenu[3].isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.COORDINACION;
+        }
+        else if (gui.bMenu[4].isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.TODO;
+        }
+        else if (gui.bMenu[5].isEnabled()){
+            gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+        }
+
        gui.textFields[0].isPressed(this);
        gui.textFields[1].isPressed(this);
        gui.textFields[2].isPressed(this);
@@ -104,9 +135,9 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.bMenu[0].updateHandCursor(p5) || gui.bMenu[1].updateHandCursor(p5)
-                || gui.bMenu[2].updateHandCursor(p5) || gui.bMenu[3].updateHandCursor(p5) || gui.bMenu[4].updateHandCursor(p5)
-                || gui.bMenu[5].updateHandCursor(p5)){
+        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.b3.updateHandCursor(p5) || gui.b4.updateHandCursor(p5)
+                || gui.bMenu[0].updateHandCursor(p5) || gui.bMenu[1].updateHandCursor(p5) || gui.bMenu[2].updateHandCursor(p5)
+                || gui.bMenu[3].updateHandCursor(p5) || gui.bMenu[4].updateHandCursor(p5) || gui.bMenu[5].updateHandCursor(p5)){
 
             cursor(HAND);
         }

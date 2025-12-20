@@ -22,6 +22,7 @@ public class DayButton {
         this.dia = d; this.mes = m; this.any = a;
         this.selected = false;
         this.enabled = true;
+        //No me deixa ficar els colors: c = new Colors(p5);, dona error
     }
 
     // Setters

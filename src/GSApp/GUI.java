@@ -11,10 +11,10 @@ import static GSApp.Estetica.Medidas.midaParagraf;
 
 public class GUI {
 
-    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION};
+    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION,TODO};
 
-    // Botones: entrar, registrarse, volver a la pantalla principal
-    Button b1, b2, b3;
+    // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate
+    Button b1, b2, b3, b4;
     Button[] bMenu;
     PImage perfil, logoLogIn, logoPrincipal, logoCompeticiones; //Load image perque es png
     TextList tList;
@@ -37,9 +37,10 @@ public class GUI {
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
-        b1 = new Button(p5, "ENTRAR", p5.width/2+250, 650, 250, 90);
+        b1 = new Button(p5, "ENTRAR", p5.width/2+250, 600, 250, 90);
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
-        b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 120, 30);
+        b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 130, 30);
+        b4 = new Button(p5, "No tienes cuenta? Regístrate", p5.width/2+350, 800, 300, 80);
         setButtons(p5);
         calendario = new CalendarPlus(p5, 800, 350, 500, 600);
 
@@ -59,6 +60,7 @@ public class GUI {
         pantallaActual = PANTALLA.LOGIN;
     }
 
+    //Fet, queda foto del requadre de l'esquerra i posar que si es pitja el boto d'entrar vagi a la pantalla principal.
     public void dibujaPantallaLogIn(PApplet p5){
         p5.background(255);
 
@@ -85,12 +87,13 @@ public class GUI {
 
         textFields[0].display(p5); textFields[1].display(p5);
 
-        b1.display(p5);
+        b1.display(p5); b4.display(p5);
 
         //Logo
         p5.image(logoLogIn, 200, 330);
     }
 
+    //Fet queda posar foto requadre esquerra i posar que si es pitja el boto d'entrar vagi a la pantalla principal.
     public void dibujaPantallaSignIn(PApplet p5){
         p5.background(255);
         p5.pushStyle();
@@ -107,15 +110,24 @@ public class GUI {
             p5.triangle(0, -100, 80, 0, 0, 100);
         p5.popMatrix();
 
+        p5.pushStyle();
+            p5.fill(0); p5.textSize(midaParagraf);
+            p5.text("Nombre", p5.width/2+170, 170);
+            p5.text("Apellidos", p5.width/2+170, 270);
+            p5.text("Fecha nacimiento", p5.width/2+170, 370);
+            p5.text("País", p5.width/2+170, 470);
+            p5.text("Província", p5.width/2+170, 570);
+            p5.text("Domicilio", p5.width/2+170, 670);
+            p5.text("Contraseña", p5.width/2+170, 770);
+        p5.popStyle();
+
         textFields[2].display(p5); textFields[3].display(p5); textFields[4].display(p5); textFields[5].display(p5);
         textFields[6].display(p5); textFields[7].display(p5);
-
-
 
         b2.display(p5);
 
         //Logo
-        p5.rect(200, 250, 300, 300);
+        p5.image(logoLogIn, 200, 330);
 
         tList.display(p5);
     }
@@ -148,15 +160,15 @@ public class GUI {
 
         calendario.display(p5);
 
-        dibujaBotonesMenu(p5);
-        b3.display(p5);
-
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
             p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
             p5.text("CALENDARIO COMPETICIONES", 800, 130);
         p5.popStyle();
+
+        dibujaBotonesMenu(p5);
+        b3.display(p5);
     }
 
     public void dibujaPantallaTecnica(PApplet p5){
@@ -208,6 +220,14 @@ public class GUI {
             p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
             p5.text("COORDINACIÓN", 800, 130);
         p5.popStyle();
+    }
+
+    public void dibujaPantalllaToDo(PApplet p5){
+
+        dibujaLogoBanner(p5);
+
+        b3.display(p5);
+
     }
 
     public void setButtons(PApplet p5){
