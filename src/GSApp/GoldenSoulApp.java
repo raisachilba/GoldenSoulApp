@@ -29,22 +29,27 @@ public class GoldenSoulApp extends PApplet {
 
         switch(gui.pantallaActual){
             case LOGIN: gui.dibujaPantallaLogIn(this);
-            break;
+                break;
 
             case SIGNIN: gui.dibujaPantallaSignIn(this);
-            break;
+                break;
 
             case PRINCIPAL: gui.dibujaPantallaPrincipal(this);
-            break;
+                break;
 
             case COMPETICIONES: gui.dibujaPantallaCalendComps(this);
                 break;
 
             case TECNICA: gui.dibujaPantallaTecnica(this);
                 break;
+
             case ELASTICIDAD: gui.dibujaPantallaElasticidad(this);
                 break;
+
             case COORDINACION: gui.dibujaPantallaCoordinacion(this);
+                break;
+
+            case TODO: gui.dibujaPantalllaToDo(this);
                 break;
         }
 
@@ -74,6 +79,9 @@ public class GoldenSoulApp extends PApplet {
         }
         else if(key == '6'){
             gui.pantallaActual = GUI.PANTALLA.COORDINACION;
+        }
+        else if(key == '7'){
+            gui.pantallaActual = GUI.PANTALLA.TODO;
         }
        gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
        gui.textFields[2].keyPressed(key, keyCode); gui.textFields[3].keyPressed(key, keyCode);

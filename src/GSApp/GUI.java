@@ -16,9 +16,9 @@ public class GUI {
     // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate
     Button b1, b2, b3, b4;
     Button[] bMenu;
-    PImage perfil, logoLogIn, logoPrincipal, logoCompeticiones; //Load image perque es png
+    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas; //Load image perque es png
     TextList tList;
-    String[] provincies = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
+    String[] provincias = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
             "Guipúzcoa","Islas Baleares","Islas Canarias", "La Coruña", "Madrid", "Málaga", "Murcia",
             "Sevilla", "Toledo", "Valencia", "Valladolid", "Vizcaya", "Zaragoza"};
 
@@ -34,6 +34,20 @@ public class GUI {
 
     Card[] videoExplica;
 
+    PagedTable tablaToDo;
+    String[] headers = {"Nombre","Baile", "Objetivo", "Explicación", "Estado"};
+    int[] colWidth = {50, 30, 40, 100, 30};
+    String[][] info = {
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+    };
+
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
@@ -43,6 +57,7 @@ public class GUI {
         b4 = new Button(p5, "No tienes cuenta? Regístrate", p5.width/2+350, 800, 300, 80);
         setButtons(p5);
         calendario = new CalendarPlus(p5, 800, 350, 500, 600);
+        setPagedTable(p5);
 
         this.dibujaVideoExplica(p5);
 
@@ -52,10 +67,10 @@ public class GUI {
         perfil = p5.loadImage("data/Icones/FotoPerfil.png");
         logoLogIn = p5.loadImage("data/Logo/LogoLogInNegro.png");
         logoPrincipal = p5.loadImage("data/Logo/LogoPantallaPrincipalN.png");
-        logoCompeticiones = p5.loadImage("data/Logo/LogoCompeticionesGranate.png");
+        logoBotonesEntradas = p5.loadImage("data/Logo/LogoCompeticionesGranate.png");
         this.setTextField(p5);
 
-        tList = new TextList(p5, provincies, p5.width/2+170, 580, 400, 50);
+        tList = new TextList(p5, provincias, p5.width/2+170, 580, 400, 50);
 
         pantallaActual = PANTALLA.LOGIN;
     }
@@ -224,9 +239,21 @@ public class GUI {
 
     public void dibujaPantalllaToDo(PApplet p5){
 
+        p5.background(240);
+
         dibujaLogoBanner(p5);
 
         b3.display(p5);
+
+        p5.pushStyle();
+            p5.textAlign(p5.CENTER);
+            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
+            p5.text("TO-DO LIST", 800, 130);
+        p5.popStyle();
+
+        setPagedTable(p5);
+        //tablaToDo.display(p5, 100, 300, 700, 500);
 
     }
 
@@ -257,11 +284,22 @@ public class GUI {
             p5.image(logoPrincipal, 0, 0);
         }
         else if (pantallaActual == PANTALLA.COMPETICIONES){
-            p5.image(logoCompeticiones, 0, 0);
+            p5.image(logoBotonesEntradas, 0, 0);
+        }
+        else if (pantallaActual == PANTALLA.TECNICA){
+            p5.image(logoBotonesEntradas, 0, 0);
+        }
+        else if (pantallaActual == PANTALLA.ELASTICIDAD){
+            p5.image(logoBotonesEntradas, 0, 0);
+        }
+        else if (pantallaActual == PANTALLA.COORDINACION){
+            p5.image(logoBotonesEntradas, 0, 0);
+        }
+        else if (pantallaActual == PANTALLA.TODO){
+            p5.image(logoBotonesEntradas, 0, 0);
         }
 
         p5.pushMatrix();
-            //p5.rect(0, 0, 220, 220);
             p5.translate(220, 0);
             p5.rect(0, 0, p5.width, 220);
         p5.popMatrix();
@@ -293,6 +331,14 @@ public class GUI {
 
             videoExplica[0].display(p5); videoExplica[1].display(p5); videoExplica[2].display(p5);
         p5.popStyle();
+    }
+
+    public void setPagedTable(PApplet p5){
+        tablaToDo = new PagedTable(5, 4);
+        tablaToDo.setHeaders(headers);
+        tablaToDo.setColumnWidths(colWidth);
+        tablaToDo.setData(info);
+        tablaToDo.display(p5, 100, 300, 700, 500);
     }
 
 }

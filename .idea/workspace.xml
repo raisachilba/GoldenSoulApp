@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Continuar programa">
+      <change afterPath="$PROJECT_DIR$/src/GSApp/Elementos/PagedTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GSApp/Elementos/PagedTableTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GSApp/Elementos/Table.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/Elementos/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Elementos/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GSApp/Elementos/DayButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Elementos/DayButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GSApp/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" afterDir="false" />
     </list>
@@ -49,19 +50,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.GoldenSoulApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestCard.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/raisachilba/IdeaProjects/GoldenSoulApp/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.GoldenSoulApp.executor": "Run",
+    "Application.PagedTableTest.executor": "Run",
+    "Application.TestCard.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "/Users/raisachilba/IdeaProjects/GoldenSoulApp/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data/Logo" />
@@ -75,10 +77,23 @@
       <recent name="GSApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GoldenSoulApp">
+  <component name="RunManager" selected="Application.PagedTableTest">
     <configuration name="GoldenSoulApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GSApp.GoldenSoulApp" />
       <module name="GoldenSoulApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PagedTableTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GSApp.Elementos.PagedTableTest" />
+      <module name="GoldenSoulApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GSApp.Elementos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -98,6 +113,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PagedTableTest" />
         <item itemvalue="Application.GoldenSoulApp" />
         <item itemvalue="Application.TestCard" />
       </list>
@@ -296,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766177560107</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Continuar programa">
+      <option name="closed" value="true" />
+      <created>1766210222779</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1766210222779</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
