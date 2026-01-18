@@ -92,11 +92,19 @@ public class GoldenSoulApp extends PApplet {
             gui.tList.getTextField().keyPressed(key, keyCode);
             gui.tList.update(this);
         }
+
     }
 
+    // ELS BOTONS NO ES QUEDEN BEN AÏLLATS SEGONS LES PANTALLES
     public void mousePressed(){
 
         //aïllar els botons i text fields segons pantalles
+        if(gui.bNext.mouseOverButton(this) && gui.bNext.isEnabled()){
+            gui.tablaToDo.nextPage();
+        }
+        else if(gui.bPrev.mouseOverButton(this) && gui.bPrev.isEnabled()){
+            gui.tablaToDo.prevPage();
+        }
         if(gui.b1.isEnabled()){
             gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
         }

@@ -13,10 +13,12 @@ public class GUI {
 
     public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION,TODO};
 
-    // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate
-    Button b1, b2, b3, b4;
+    // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate, paged table
+    Button b1, b2, b3, b4, bPrev, bNext;
     Button[] bMenu;
-    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas; //Load image perque es png
+
+    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner; //Load image perque es png
+
     TextList tList;
     String[] provincias = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
             "Guipúzcoa","Islas Baleares","Islas Canarias", "La Coruña", "Madrid", "Málaga", "Murcia",
@@ -53,10 +55,12 @@ public class GUI {
     public GUI(PApplet p5) {
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 600, 250, 90);
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
-        b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 130, 30);
+        b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 170, 30);
         b4 = new Button(p5, "No tienes cuenta? Regístrate", p5.width/2+350, 800, 300, 80);
+        bNext = new Button(p5, "NEXT", 200, 250, 70, 30);
+        bPrev = new Button(p5, "PREV", 100, 250, 70, 30 );
         setButtons(p5);
-        calendario = new CalendarPlus(p5, 800, 350, 500, 600);
+        calendario = new CalendarPlus(p5, 800, 350, 600, 600);
         setPagedTable(p5);
 
         this.dibujaVideoExplica(p5);
@@ -64,10 +68,16 @@ public class GUI {
         c = new Colors(p5);
         medida = new Medidas();
         fontsApp = new Fonts(p5);
+
         perfil = p5.loadImage("data/Icones/FotoPerfil.png");
         logoLogIn = p5.loadImage("data/Logo/LogoLogInNegro.png");
         logoPrincipal = p5.loadImage("data/Logo/LogoPantallaPrincipalN.png");
         logoBotonesEntradas = p5.loadImage("data/Logo/LogoCompeticionesGranate.png");
+
+        fotoLogIn = p5.loadImage("data/Fotos/LatinoJive.png");
+        fotoSignIn = p5.loadImage("data/Fotos/Ballroom1.png");
+        fotoBanner = p5.loadImage("data/Fotos/BallroomExtended.png");
+
         this.setTextField(p5);
 
         tList = new TextList(p5, provincias, p5.width/2+170, 580, 400, 50);
@@ -75,7 +85,7 @@ public class GUI {
         pantallaActual = PANTALLA.LOGIN;
     }
 
-    //Fet, queda foto del requadre de l'esquerra i posar que si es pitja el boto d'entrar vagi a la pantalla principal.
+    //Fet, posar que si es pitja el boto d'entrar vagi a la pantalla principal.
     public void dibujaPantallaLogIn(PApplet p5){
         p5.background(255);
 
@@ -87,11 +97,18 @@ public class GUI {
             p5.text("LOG IN", 1110, 320);
         p5.popStyle();
 
-        p5.rect(0, 0, p5.width/2, p5.height);
+        //p5.rect(0, 0, p5.width/2, p5.height);
+        p5.pushMatrix();
+            p5.scale(1.49f,1.5f);
+            p5.image(fotoLogIn, 0,0);
+        p5.popMatrix();
 
         p5.pushMatrix();
             p5.translate(p5.width/2, p5.height/2);
-            p5.triangle(0, -100, 80, 0, 0, 100);
+            p5.pushStyle();
+                p5.fill(10);
+                p5.triangle(0, -100, 80, 0, 0, 100);
+            p5.popStyle();
         p5.popMatrix();
 
         p5.pushStyle();
@@ -108,7 +125,7 @@ public class GUI {
         p5.image(logoLogIn, 200, 330);
     }
 
-    //Fet queda posar foto requadre esquerra i posar que si es pitja el boto d'entrar vagi a la pantalla principal.
+    //Fet, posar que si es pitja el boto d'entrar vagi a la pantalla principal.
     public void dibujaPantallaSignIn(PApplet p5){
         p5.background(255);
         p5.pushStyle();
@@ -118,11 +135,17 @@ public class GUI {
             p5.text("SIGN IN", 1110, 110);
         p5.popStyle();
 
-        p5.rect(0, 0, p5.width/2, p5.height);
+        p5.pushMatrix();
+            p5.scale(0.618f,0.71f);
+            p5.image(fotoSignIn,-10,0);
+        p5.popMatrix();
 
         p5.pushMatrix();
             p5.translate(p5.width/2, p5.height/2);
-            p5.triangle(0, -100, 80, 0, 0, 100);
+            p5.pushStyle();
+                p5.fill(10);
+                p5.triangle(0, -100, 80, 0, 0, 100);
+            p5.popStyle();
         p5.popMatrix();
 
         p5.pushStyle();
@@ -237,6 +260,7 @@ public class GUI {
         p5.popStyle();
     }
 
+    //LA PAGED TABLE NO ES DIBUIXA TAL COM TOCA
     public void dibujaPantalllaToDo(PApplet p5){
 
         p5.background(240);
@@ -253,19 +277,19 @@ public class GUI {
         p5.popStyle();
 
         setPagedTable(p5);
-        //tablaToDo.display(p5, 100, 300, 700, 500);
-
+        bNext.display(p5);
+        bPrev.display(p5);
     }
 
     public void setButtons(PApplet p5){
         bMenu = new Button[7];
 
-        bMenu[0] = new Button(p5,"COMPETICIONES", 70, 300, 150, 150);
-        bMenu[1] = new Button(p5,"TÉCNICA", 260, 300, 150, 150);
-        bMenu[2] = new Button(p5,"ELASTICIDAD", 450, 300, 150, 150);
-        bMenu[3] = new Button(p5,"COORDINACIÓN", 70, 530, 150, 150);
-        bMenu[4] = new Button(p5,"TO-DO LIST", 260, 530, 150, 150);
-        bMenu[5] = new Button(p5,"CALENDARIO", 450, 530, 150, 150);
+        bMenu[0] = new Button(p5,"COMPETICIONES", 70, 360, 180, 160);
+        bMenu[1] = new Button(p5,"TÉCNICA", 260, 360, 180, 160);
+        bMenu[2] = new Button(p5,"ELASTICIDAD", 450, 360, 180, 160);
+        bMenu[3] = new Button(p5,"COORDINACIÓN", 70, 590, 180, 160);
+        bMenu[4] = new Button(p5,"TO-DO LIST", 260, 590, 180, 160);
+        bMenu[5] = new Button(p5,"CALENDARIO", 450, 590, 180, 160);
     }
 
     public void dibujaBotonesMenu(PApplet p5){
@@ -279,6 +303,8 @@ public class GUI {
     }
 
     public void dibujaLogoBanner(PApplet p5){
+
+        p5.image(fotoBanner, 220, 0);
 
         if(pantallaActual == PANTALLA.PRINCIPAL) {
             p5.image(logoPrincipal, 0, 0);
@@ -299,10 +325,6 @@ public class GUI {
             p5.image(logoBotonesEntradas, 0, 0);
         }
 
-        p5.pushMatrix();
-            p5.translate(220, 0);
-            p5.rect(0, 0, p5.width, 220);
-        p5.popMatrix();
     }
 
     public void setTextField(PApplet p5){
