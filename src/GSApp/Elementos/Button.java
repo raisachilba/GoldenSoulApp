@@ -45,7 +45,8 @@ public class Button {
     // Getters
 
     public boolean isEnabled(){
-        return  this.enabled;
+        System.out.print("Button pressed");
+        return this.enabled;
     }
 
     // Dibuixa el botó
