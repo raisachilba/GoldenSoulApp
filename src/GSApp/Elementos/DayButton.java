@@ -22,10 +22,13 @@ public class DayButton {
         this.dia = d; this.mes = m; this.any = a;
         this.selected = false;
         this.enabled = true;
+
         //NO DEIXA POSAR ELS COLORS AL CONSTRUCTOR DE DAY BUTTON
     }
 
     // Setters
+
+    public void setColors(Colors c){ this.c = c; }
 
     public void setEnabled(boolean b){
         this.enabled = b;
@@ -40,7 +43,7 @@ public class DayButton {
     public void display(PApplet p5){
         p5.pushStyle();
         if(enabled){
-            p5.fill(255, 0, 0);
+            p5.fill(c.getGoldColor(p5, 1));
         }
         else{
             p5.fill(100);

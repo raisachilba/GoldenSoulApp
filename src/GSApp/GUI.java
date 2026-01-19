@@ -38,7 +38,7 @@ public class GUI {
 
     PagedTable tablaToDo;
     String[] headers = {"Nombre","Baile", "Objetivo", "Explicación", "Estado"};
-    int[] colWidth = {50, 30, 40, 100, 30};
+    int[] colWidth = {20, 20, 20, 30, 10};
     String[][] info = {
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
@@ -53,6 +53,7 @@ public class GUI {
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
+        c = new Colors(p5);
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 600, 250, 90);
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
         b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 170, 30);
@@ -60,12 +61,12 @@ public class GUI {
         bNext = new Button(p5, "NEXT", 200, 250, 70, 30);
         bPrev = new Button(p5, "PREV", 100, 250, 70, 30 );
         setButtons(p5);
-        calendario = new CalendarPlus(p5, 800, 350, 600, 600);
+
+        calendario = new CalendarPlus(p5, 800, 350, 600, 600, c);
         setPagedTable(p5);
 
         this.dibujaVideoExplica(p5);
 
-        c = new Colors(p5);
         medida = new Medidas();
         fontsApp = new Fonts(p5);
 

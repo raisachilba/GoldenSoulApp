@@ -1,5 +1,6 @@
 package GSApp.Elementos;
 
+import GSApp.Estetica.Colors;
 import processing.core.PApplet;
 
 public class Calendar {
@@ -25,9 +26,14 @@ public class Calendar {
     // Dimensions del calendari
     int x, y, w, h;
 
+    Colors colors;
+
 
     // Constructor
-    public Calendar(int x, int y, int w, int h){
+    public Calendar(int x, int y, int w, int h,  Colors colors){
+
+
+        this.colors = colors;
 
         this.buttons = new DayButton[37];
 
@@ -126,10 +132,12 @@ public class Calendar {
                 for(int p=firstDay, c=0; p<=numDaysPrevMonth; p++, c++){
                     buttons[nb] = new DayButton(x + c*dayWidth, y + f*dayHeight, dayWidth, dayHeight, p, mes, any);
                     buttons[nb].setEnabled(false);
+                    buttons[nb].setColors(colors);
                     cPrev++; nb++;
                 }
                 for(int c=cPrev; c<7; c++){
                     buttons[nb] = new DayButton(x + c*dayWidth, y + f*dayHeight, dayWidth, dayHeight, numDia, mes, any);
+                    buttons[nb].setColors(colors);
                     numDia++; nb++;
                 }
                 f++;
@@ -137,6 +145,7 @@ public class Calendar {
             else {
                 for(int c=0; c<7; c++){
                     buttons[nb] = new DayButton(x + c*dayWidth, y + f*dayHeight, dayWidth, dayHeight, numDia, mes, any);
+                    buttons[nb].setColors(colors);
                     numDia++; nb++;
                     if(numDia>numDaysMonth){ break; }
                 }

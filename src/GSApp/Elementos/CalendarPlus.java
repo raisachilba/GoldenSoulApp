@@ -1,5 +1,6 @@
 package GSApp.Elementos;
 
+import GSApp.Estetica.Colors;
 import processing.core.PApplet;
 
 public class CalendarPlus extends Calendar{
@@ -11,9 +12,9 @@ public class CalendarPlus extends Calendar{
     boolean visible = true;
 
     // Constructor
-    public CalendarPlus(PApplet p5, int x, int y, int w, int h) {
+    public CalendarPlus(PApplet p5, int x, int y, int w, int h, Colors colors) {
 
-        super(x, y, w, h);
+        super(x, y, w, h, colors);
 
         bNext = new Button(p5, "Seguent", x+ w/3, y -70, 100, 50);
         bPrev = new Button(p5, "Anterior", x+w/3+100, y - 70, 100, 50);
