@@ -38,7 +38,7 @@ public class GUI {
 
     PagedTable tablaToDo;
     String[] headers = {"Nombre","Baile", "Objetivo", "Explicación", "Estado"};
-    int[] colWidth = {20, 20, 20, 30, 10};
+    int[] colWidth = {10, 10, 10, 10, 10};
     String[][] info = {
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
@@ -70,7 +70,7 @@ public class GUI {
         medida = new Medidas();
         fontsApp = new Fonts(p5);
 
-        perfil = p5.loadImage("data/Icones/FotoPerfil.png");
+        perfil = p5.loadImage("data/Icones/ImatgePerfil-2.png");
         logoLogIn = p5.loadImage("data/Logo/LogoLogInNegro.png");
         logoPrincipal = p5.loadImage("data/Logo/LogoPantallaPrincipalN.png");
         logoBotonesEntradas = p5.loadImage("data/Logo/LogoCompeticionesGranate.png");
@@ -86,9 +86,8 @@ public class GUI {
         pantallaActual = PANTALLA.LOGIN;
     }
 
-    //Fet, posar que si es pitja el boto d'entrar vagi a la pantalla principal.
     public void dibujaPantallaLogIn(PApplet p5){
-        p5.background(255);
+        p5.background(230);
 
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
@@ -126,9 +125,8 @@ public class GUI {
         p5.image(logoLogIn, 200, 330);
     }
 
-    //Fet, posar que si es pitja el boto d'entrar vagi a la pantalla principal.
     public void dibujaPantallaSignIn(PApplet p5){
-        p5.background(255);
+        p5.background(230);
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
             p5.rect(p5.width/2+170, 50, 400, 80);
@@ -172,7 +170,7 @@ public class GUI {
     }
 
     public void dibujaPantallaPrincipal(PApplet p5){
-        p5.background(240);
+        p5.background(230);
 
         dibujaLogoBanner(p5);
 
@@ -182,18 +180,18 @@ public class GUI {
 
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
-            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontTitulo()); //ÚS FONTS
+            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontTitulo());
             p5.text("GOLDEN SOUL DANCE", 800, 130);
         p5.popStyle();
 
         p5.pushMatrix();
-            p5.scale(0.1f, 0.1f);
-            p5.image(perfil, 600, 100);
+            p5.scale(0.05f,0.05f);
+            p5.image(perfil, 70, 0);
         p5.popMatrix();
     }
 
     public void dibujaPantallaCalendComps(PApplet p5){
-        p5.background(240);
+        p5.background(230);
 
         dibujaLogoBanner(p5);
 
@@ -211,7 +209,7 @@ public class GUI {
     }
 
     public void dibujaPantallaTecnica(PApplet p5){
-        p5.background(240);
+        p5.background(230);
 
         dibujaLogoBanner(p5);
 
@@ -228,7 +226,7 @@ public class GUI {
     }
 
     public void dibujaPantallaElasticidad(PApplet p5){
-        p5.background(240);
+        p5.background(230);
 
         dibujaLogoBanner(p5);
 
@@ -245,7 +243,7 @@ public class GUI {
     }
 
     public void dibujaPantallaCoordinacion(PApplet p5){
-        p5.background(240);
+        p5.background(230);
 
         dibujaLogoBanner(p5);
 
@@ -263,8 +261,7 @@ public class GUI {
 
     //LA PAGED TABLE NO ES DIBUIXA TAL COM TOCA
     public void dibujaPantalllaToDo(PApplet p5){
-
-        p5.background(240);
+        p5.background(230);
 
         dibujaLogoBanner(p5);
 

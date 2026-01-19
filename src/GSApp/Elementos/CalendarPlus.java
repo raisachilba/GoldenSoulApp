@@ -37,7 +37,7 @@ public class CalendarPlus extends Calendar{
         if (visible) {
             p5.pushStyle();
 
-            p5.fill(255); p5.noStroke();
+            p5.fill(230); p5.noStroke();
             p5.rect(x, y-80, w, h);
 
             super.display(p5);

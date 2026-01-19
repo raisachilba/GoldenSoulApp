@@ -25,7 +25,7 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void draw(){
-        background(255);
+        background(230);
 
         switch(gui.pantallaActual){
             case LOGIN: gui.dibujaPantallaLogIn(this);
@@ -58,7 +58,6 @@ public class GoldenSoulApp extends PApplet {
 
     public void keyPressed(){
 
-        //aïllar botons i text fields per cada pantalla
         if(key == '0'){
             gui.pantallaActual = GUI.PANTALLA.LOGIN;
         }
@@ -92,6 +91,10 @@ public class GoldenSoulApp extends PApplet {
             gui.tList.getTextField().keyPressed(key, keyCode);
             gui.tList.update(this);
         }
+
+        gui.videoExplica[0].typeOnCardItems(this);
+        gui.videoExplica[1].typeOnCardItems(this);
+        gui.videoExplica[2].typeOnCardItems(this);
 
     }
 
@@ -143,6 +146,15 @@ public class GoldenSoulApp extends PApplet {
             else if(gui.bMenu[5].mouseOverButton(this) && gui.bMenu[5].isEnabled()){
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
+            else if(gui.calendario.bOK.mouseOverButton(this)){
+                gui.calendario.bOK.isEnabled();
+            }
+            else if(gui.calendario.bNext.mouseOverButton(this)){
+                gui.calendario.bNext.isEnabled();
+            }
+            else if(gui.calendario.bPrev.mouseOverButton(this)){
+                gui.calendario.bPrev.isEnabled();
+            }
         }
 
         else if(gui.pantallaActual == GUI.PANTALLA.COMPETICIONES){
@@ -173,18 +185,27 @@ public class GoldenSoulApp extends PApplet {
             if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
+            gui.videoExplica[0].clickMouseOnCardItems(this);
+            gui.videoExplica[1].clickMouseOnCardItems(this);
+            gui.videoExplica[2].clickMouseOnCardItems(this);
         }
 
         else if(gui.pantallaActual == GUI.PANTALLA.ELASTICIDAD){
             if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
+            gui.videoExplica[0].clickMouseOnCardItems(this);
+            gui.videoExplica[1].clickMouseOnCardItems(this);
+            gui.videoExplica[2].clickMouseOnCardItems(this);
         }
 
         else if(gui.pantallaActual == GUI.PANTALLA.COORDINACION){
             if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
+            gui.videoExplica[0].clickMouseOnCardItems(this);
+            gui.videoExplica[1].clickMouseOnCardItems(this);
+            gui.videoExplica[2].clickMouseOnCardItems(this);
         }
 
         else if(gui.pantallaActual == GUI.PANTALLA.TODO){
@@ -197,6 +218,9 @@ public class GoldenSoulApp extends PApplet {
             else if (gui.bPrev.mouseOverButton(this) && gui.bPrev.isEnabled()) {
                 gui.tablaToDo.prevPage();
             }
+            gui.videoExplica[0].clickMouseOnCardItems(this);
+            gui.videoExplica[1].clickMouseOnCardItems(this);
+            gui.videoExplica[2].clickMouseOnCardItems(this);
         }
     }
 
@@ -205,7 +229,8 @@ public class GoldenSoulApp extends PApplet {
                 || gui.b4.updateHandCursor(this) || gui.bMenu[0].updateHandCursor(this) || gui.bMenu[1].updateHandCursor(this)
                 || gui.bMenu[2].updateHandCursor(this) || gui.bMenu[3].updateHandCursor(this)
                 || gui.bMenu[4].updateHandCursor(this) || gui.bMenu[5].updateHandCursor(this)
-                || gui.bNext.updateHandCursor(this) || gui.bPrev.updateHandCursor(this)){
+                || gui.bNext.updateHandCursor(this) || gui.bPrev.updateHandCursor(this) || gui.calendario.bPrev.updateHandCursor(this)
+                || gui.calendario.bNext.updateHandCursor(this) || gui.calendario.bOK.updateHandCursor(this)){
 
             cursor(HAND);
         }

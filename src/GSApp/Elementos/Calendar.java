@@ -31,8 +31,6 @@ public class Calendar {
 
     // Constructor
     public Calendar(int x, int y, int w, int h,  Colors colors){
-
-
         this.colors = colors;
 
         this.buttons = new DayButton[37];
@@ -156,7 +154,6 @@ public class Calendar {
 
     // Va un mes endavant en el calendari
     public void nextMonth(){
-
         this.buttons = new DayButton[37];
 
         this.mes ++;

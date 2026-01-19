@@ -79,7 +79,7 @@ public class PagedTable {
         // Dibuixa Columnes
         float xCol = x;
         for(int c = 0; c<numCols; c++){
-            xCol += w*columnWidths[c]/100.0;
+            xCol += w*columnWidths[c]/50.0;
             p5.line(xCol, y, xCol, y + h);
         }
 
@@ -97,7 +97,7 @@ public class PagedTable {
                         p5.text(tableData[k][c], xCol + 10, y + (r+1)*rowHeight - 10);
                     }
                 }
-                xCol += w*columnWidths[c]/100.0;
+                xCol += w*columnWidths[c]/50.0;
             }
         }
 

@@ -43,7 +43,7 @@ public class DayButton {
     public void display(PApplet p5){
         p5.pushStyle();
         if(enabled){
-            p5.fill(c.getGoldColor(p5, 1));
+            p5.fill(c.getRedColor(p5,3));
         }
         else{
             p5.fill(100);
@@ -51,7 +51,7 @@ public class DayButton {
         p5.stroke(0); p5.strokeWeight(1);
         p5.rect(x, y, w, h, 5);
         if(selected){
-            p5.fill(200, 100, 100); p5.noStroke();
+            p5.fill(c.getRedColor(p5,2)); p5.noStroke();
             p5.ellipse(x + w/2, y+h/2, 80, 80);
         }
         p5.fill(0); p5.textSize(24); p5.textAlign(p5.CENTER);
