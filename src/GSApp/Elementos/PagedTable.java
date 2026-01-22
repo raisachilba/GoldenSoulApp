@@ -13,6 +13,7 @@ public class PagedTable {
     int numPage;
     int numTotalPages;
 
+
     // Constructor
     public PagedTable(int nr, int nc){
         this.numRows = nr;
@@ -106,6 +107,7 @@ public class PagedTable {
         p5.text("Pag: "+(this.numPage+1)+" / "+(this.numTotalPages+1), x, y + h + 50);
 
         p5.popStyle();
+
     }
 
 }

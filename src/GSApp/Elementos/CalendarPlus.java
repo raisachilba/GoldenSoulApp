@@ -21,7 +21,6 @@ public class CalendarPlus extends Calendar{
         bOK   = new Button(p5, "OK", x+w/3+200, y - 70, 50, 50);
     }
 
-
     // Setters
 
     public void toggleVisibility(){

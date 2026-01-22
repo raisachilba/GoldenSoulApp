@@ -48,6 +48,8 @@ public class GUI {
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
     };
 
     public PANTALLA pantallaActual;
@@ -183,11 +185,6 @@ public class GUI {
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontTitulo());
             p5.text("GOLDEN SOUL DANCE", 800, 130);
         p5.popStyle();
-
-        p5.pushMatrix();
-            p5.scale(0.05f,0.05f);
-            p5.image(perfil, 70, 0);
-        p5.popMatrix();
     }
 
     public void dibujaPantallaCalendComps(PApplet p5){

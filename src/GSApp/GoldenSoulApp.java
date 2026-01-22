@@ -98,22 +98,19 @@ public class GoldenSoulApp extends PApplet {
 
     }
 
-    // ELS BOTONS NO ES QUEDEN BEN AÏLLATS SEGONS LES PANTALLES
     public void mousePressed() {
 
-        if(gui.pantallaActual == GUI.PANTALLA.LOGIN) {
-            if(gui.b1.mouseOverButton(this) && gui.b1.isEnabled()){
+        if (gui.pantallaActual == GUI.PANTALLA.LOGIN) {
+            if (gui.b1.mouseOverButton(this) && gui.b1.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
-            }
-            else if (gui.b4.mouseOverButton(this) && gui.b4.isEnabled()){
+            } else if (gui.b4.mouseOverButton(this) && gui.b4.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.SIGNIN;
             }
             gui.textFields[0].isPressed(this);
             gui.textFields[1].isPressed(this);
         }
-
-        else if(gui.pantallaActual == GUI.PANTALLA.SIGNIN){
-            if(gui.b2.mouseOverButton(this) && gui.b2.isEnabled()){
+        else if (gui.pantallaActual == GUI.PANTALLA.SIGNIN) {
+            if (gui.b2.mouseOverButton(this) && gui.b2.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
             gui.textFields[2].isPressed(this);
@@ -127,62 +124,46 @@ public class GoldenSoulApp extends PApplet {
             gui.tList.buttonPressed(this);
         }
 
-        else if(gui.pantallaActual == GUI.PANTALLA.PRINCIPAL){
-            if(gui.bMenu[0].mouseOverButton(this) && gui.bMenu[0].isEnabled()){
+        else if (gui.pantallaActual == GUI.PANTALLA.PRINCIPAL) {
+            if (gui.bMenu[0].mouseOverButton(this) && gui.bMenu[0].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.COMPETICIONES;
-            }
-            else if(gui.bMenu[1].mouseOverButton(this) && gui.bMenu[1].isEnabled()){
+            } else if (gui.bMenu[1].mouseOverButton(this) && gui.bMenu[1].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.TECNICA;
-            }
-            else if(gui.bMenu[2].mouseOverButton(this) && gui.bMenu[2].isEnabled()){
+            } else if (gui.bMenu[2].mouseOverButton(this) && gui.bMenu[2].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.ELASTICIDAD;
-            }
-            else if(gui.bMenu[3].mouseOverButton(this) && gui.bMenu[3].isEnabled()){
+            } else if (gui.bMenu[3].mouseOverButton(this) && gui.bMenu[3].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.COORDINACION;
-            }
-            else if(gui.bMenu[4].mouseOverButton(this) && gui.bMenu[4].isEnabled()){
+            } else if (gui.bMenu[4].mouseOverButton(this) && gui.bMenu[4].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.TODO;
-            }
-            else if(gui.bMenu[5].mouseOverButton(this) && gui.bMenu[5].isEnabled()){
+            } else if (gui.bMenu[5].mouseOverButton(this) && gui.bMenu[5].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
-            }
-            else if(gui.calendario.bOK.mouseOverButton(this)){
-                gui.calendario.bOK.isEnabled();
-            }
-            else if(gui.calendario.bNext.mouseOverButton(this)){
-                gui.calendario.bNext.isEnabled();
-            }
-            else if(gui.calendario.bPrev.mouseOverButton(this)){
-                gui.calendario.bPrev.isEnabled();
+            } else if (gui.calendario.bNext.mouseOverButton(this) && gui.calendario.bNext.isEnabled()) {
+                gui.calendario.nextMonth();
+            } else if (gui.calendario.bPrev.mouseOverButton(this) && gui.calendario.bPrev.isEnabled()) {
+                gui.calendario.prevMonth();
             }
         }
 
-        else if(gui.pantallaActual == GUI.PANTALLA.COMPETICIONES){
-            if(gui.bMenu[0].mouseOverButton(this) && gui.bMenu[0].isEnabled()){
+        else if (gui.pantallaActual == GUI.PANTALLA.COMPETICIONES) {
+            if (gui.bMenu[0].mouseOverButton(this) && gui.bMenu[0].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.COMPETICIONES;
-            }
-            else if(gui.bMenu[1].mouseOverButton(this) && gui.bMenu[1].isEnabled()){
+            } else if (gui.bMenu[1].mouseOverButton(this) && gui.bMenu[1].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.TECNICA;
-            }
-            else if(gui.bMenu[2].mouseOverButton(this) && gui.bMenu[2].isEnabled()){
+            } else if (gui.bMenu[2].mouseOverButton(this) && gui.bMenu[2].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.ELASTICIDAD;
-            }
-            else if(gui.bMenu[3].mouseOverButton(this) && gui.bMenu[3].isEnabled()){
+            } else if (gui.bMenu[3].mouseOverButton(this) && gui.bMenu[3].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.COORDINACION;
-            }
-            else if(gui.bMenu[4].mouseOverButton(this) && gui.bMenu[4].isEnabled()){
+            } else if (gui.bMenu[4].mouseOverButton(this) && gui.bMenu[4].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.TODO;
-            }
-            else if(gui.bMenu[5].mouseOverButton(this) && gui.bMenu[5].isEnabled()){
+            } else if (gui.bMenu[5].mouseOverButton(this) && gui.bMenu[5].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
-            }
-            else if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
+            } else if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
         }
 
-        else if(gui.pantallaActual == GUI.PANTALLA.TECNICA){
-            if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
+        else if (gui.pantallaActual == GUI.PANTALLA.TECNICA) {
+            if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
             gui.videoExplica[0].clickMouseOnCardItems(this);
@@ -190,8 +171,8 @@ public class GoldenSoulApp extends PApplet {
             gui.videoExplica[2].clickMouseOnCardItems(this);
         }
 
-        else if(gui.pantallaActual == GUI.PANTALLA.ELASTICIDAD){
-            if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
+        else if (gui.pantallaActual == GUI.PANTALLA.ELASTICIDAD) {
+            if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
             gui.videoExplica[0].clickMouseOnCardItems(this);
@@ -199,8 +180,8 @@ public class GoldenSoulApp extends PApplet {
             gui.videoExplica[2].clickMouseOnCardItems(this);
         }
 
-        else if(gui.pantallaActual == GUI.PANTALLA.COORDINACION){
-            if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
+        else if (gui.pantallaActual == GUI.PANTALLA.COORDINACION) {
+            if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
             gui.videoExplica[0].clickMouseOnCardItems(this);
@@ -208,19 +189,17 @@ public class GoldenSoulApp extends PApplet {
             gui.videoExplica[2].clickMouseOnCardItems(this);
         }
 
-        else if(gui.pantallaActual == GUI.PANTALLA.TODO){
-            if(gui.b3.mouseOverButton(this) && gui.b3.isEnabled()){
+        else if (gui.pantallaActual == GUI.PANTALLA.TODO) {
+            if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
-            else if (gui.bNext.mouseOverButton(this) && gui.bNext.isEnabled()) {
-                gui.tablaToDo.nextPage();
-            }
-            else if (gui.bPrev.mouseOverButton(this) && gui.bPrev.isEnabled()) {
+            // NO FUNCIONEN
+            else if(gui.bPrev.mouseOverButton(this) && gui.bPrev.isEnabled()){
                 gui.tablaToDo.prevPage();
             }
-            gui.videoExplica[0].clickMouseOnCardItems(this);
-            gui.videoExplica[1].clickMouseOnCardItems(this);
-            gui.videoExplica[2].clickMouseOnCardItems(this);
+            else if(gui.bNext.mouseOverButton(this) && gui.bNext.isEnabled()){
+                gui.tablaToDo.nextPage();
+            }
         }
     }
 
