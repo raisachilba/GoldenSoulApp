@@ -193,7 +193,6 @@ public class GoldenSoulApp extends PApplet {
             if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
-            // NO FUNCIONEN
             else if(gui.bPrev.mouseOverButton(this) && gui.bPrev.isEnabled()){
                 gui.tablaToDo.prevPage();
             }

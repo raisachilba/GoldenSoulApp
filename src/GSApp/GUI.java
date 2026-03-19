@@ -1,5 +1,6 @@
 package GSApp;
 
+import GSApp.Data.BaseDatos;
 import GSApp.Elementos.*;
 import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
@@ -11,6 +12,9 @@ import static GSApp.Estetica.Medidas.midaParagraf;
 
 public class GUI {
 
+    //Base de datos
+    BaseDatos bd;
+
     public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION,TODO};
 
     // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate, paged table
@@ -20,7 +24,7 @@ public class GUI {
     PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner; //Load image perque es png
 
     TextList tList;
-    String[] provincias = { "Alicante", "Asturias", "Barcelona", "Cádiz", "Granada",
+    String[] provincias = {"Alicante", "Asturias", "Barcelona", "Cádiz", "Girona", "Granada",
             "Guipúzcoa","Islas Baleares","Islas Canarias", "La Coruña", "Madrid", "Málaga", "Murcia",
             "Sevilla", "Toledo", "Valencia", "Valladolid", "Vizcaya", "Zaragoza"};
 
@@ -38,12 +42,12 @@ public class GUI {
 
     PagedTable tablaToDo;
     String[] headers = {"Nombre","Baile", "Objetivo", "Explicación", "Estado"};
-    int[] colWidth = {10, 10, 10, 10, 10};
+    float[] colWidth = {20, 10, 20, 40, 10};
     String[][] info = {
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"Pere Soler", "Samba", "Expresivo", "...", "Done"},
+            {"Maria Riera", "Jive", "Tecnico", "...", "Done"},
+            {"Diana Blue", "Rumba", "Expresivo", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
@@ -55,7 +59,11 @@ public class GUI {
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
+        bd = new BaseDatos("admin", "12345", "todos");
+        bd.connect();
+
         c = new Colors(p5);
+
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 600, 250, 90);
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
         b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 170, 30);
@@ -82,7 +90,6 @@ public class GUI {
         fotoBanner = p5.loadImage("data/Fotos/BallroomExtended.png");
 
         this.setTextField(p5);
-
         tList = new TextList(p5, provincias, p5.width/2+170, 580, 400, 50);
 
         pantallaActual = PANTALLA.LOGIN;
@@ -258,6 +265,7 @@ public class GUI {
 
     //LA PAGED TABLE NO ES DIBUIXA TAL COM TOCA
     public void dibujaPantalllaToDo(PApplet p5){
+
         p5.background(230);
 
         dibujaLogoBanner(p5);
@@ -271,7 +279,8 @@ public class GUI {
             p5.text("TO-DO LIST", 800, 130);
         p5.popStyle();
 
-        setPagedTable(p5);
+        tablaToDo.display(p5, 100, 300, 700, 500);
+
         bNext.display(p5);
         bPrev.display(p5);
     }
@@ -351,11 +360,10 @@ public class GUI {
     }
 
     public void setPagedTable(PApplet p5){
-        tablaToDo = new PagedTable(5, 4);
+        tablaToDo = new PagedTable(4, 5);
         tablaToDo.setHeaders(headers);
         tablaToDo.setColumnWidths(colWidth);
         tablaToDo.setData(info);
-        tablaToDo.display(p5, 100, 300, 700, 500);
     }
 
 }

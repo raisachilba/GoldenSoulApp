@@ -6,13 +6,12 @@ public class PagedTable {
 
     String[] tableHeaders;   // Títols de les columnes
     String[][] tableData;    // Dades de la taula
-    int[] columnWidths;    // Amplades de les columnes
+    float[] columnWidths;    // Amplades de les columnes
 
     int numCols, numRows;  // Número de files i columnes
 
     int numPage;
     int numTotalPages;
-
 
     // Constructor
     public PagedTable(int nr, int nc){
@@ -41,7 +40,7 @@ public class PagedTable {
         this.tableData[nr][nc] = value;
     }
 
-    public void setColumnWidths(int[] w){
+    public void setColumnWidths(float[] w){
         this.columnWidths = w;
     }
 
@@ -80,7 +79,7 @@ public class PagedTable {
         // Dibuixa Columnes
         float xCol = x;
         for(int c = 0; c<numCols; c++){
-            xCol += w*columnWidths[c]/50.0;
+            xCol += w*columnWidths[c]/100.0;
             p5.line(xCol, y, xCol, y + h);
         }
 
@@ -98,7 +97,7 @@ public class PagedTable {
                         p5.text(tableData[k][c], xCol + 10, y + (r+1)*rowHeight - 10);
                     }
                 }
-                xCol += w*columnWidths[c]/50.0;
+                xCol += w*columnWidths[c]/100.0;
             }
         }
 
@@ -107,7 +106,6 @@ public class PagedTable {
         p5.text("Pag: "+(this.numPage+1)+" / "+(this.numTotalPages+1), x, y + h + 50);
 
         p5.popStyle();
-
     }
 
 }

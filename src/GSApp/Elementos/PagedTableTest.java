@@ -24,7 +24,7 @@ public class PagedTableTest extends PApplet {
     String[] headers = {"Id", "Nom", "Llinatges", "Edat", "Sexe"};
 
     // Amplades de les columnes
-    int[] colWidths = {10, 20, 40, 10, 20};
+    float[] colWidths = {10, 20, 40, 10, 20};
 
     // Dades de la taula
     String[][] info = {
