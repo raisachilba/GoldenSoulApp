@@ -59,9 +59,6 @@ public class GUI {
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
-        bd = new BaseDatos("admin", "12345", "todos");
-        bd.connect();
-
         c = new Colors(p5);
 
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 600, 250, 90);

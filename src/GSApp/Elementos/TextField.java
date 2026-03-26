@@ -103,6 +103,26 @@ public class TextField extends PApplet{
         return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y && p5.mouseY <= this.y + this.h);
     }
 
+    // Gestiona tecles especials
+    public void keyPressed(int keyCode) {
+        if (!selected) return;
+
+        if (keyCode == BACKSPACE) {
+            removeText();
+        }
+    }
+
+    // Gestiona entrada de text real (inclou accents)
+    public void keyTyped(char key) {
+        if (!selected) return;
+
+        // Evita caracteres de control
+        if (key == '\n' || key == '\r' || key == '\b') return;
+
+        addText(key);
+    }
+
+
     // Selecciona el camp de text si pitjam a sobre
     // Deselecciona el camp de text si pitjam a fora
     public void isPressed(PApplet p5) {

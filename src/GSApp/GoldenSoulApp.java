@@ -24,6 +24,8 @@ public class GoldenSoulApp extends PApplet {
     public void setup(){
         c = new Colors(this);
         fontsApp = new Fonts(this);
+        db = new BaseDatos("admin", "12345", "todos");
+        db.connect();
         gui = new GUI(this);
     }
 
@@ -57,7 +59,10 @@ public class GoldenSoulApp extends PApplet {
         }
 
         if(loginWrong){
-            text("Usuario o contrseña incorrectos", width/2+170, 570);
+            pushStyle();
+            textSize(15); fill(c.getRedColor(this, 1));
+            text("Usuario o contrseña incorrectos", width/2+170, 575);
+            popStyle();
         }
 
         updateCursor(this);
@@ -91,14 +96,26 @@ public class GoldenSoulApp extends PApplet {
         }
 
  */
-       gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
-       gui.textFields[2].keyPressed(key, keyCode); gui.textFields[3].keyPressed(key, keyCode);
-       gui.textFields[4].keyPressed(key, keyCode); gui.textFields[5].keyPressed(key, keyCode);
-       gui.textFields[6].keyPressed(key, keyCode); gui.textFields[7].keyPressed(key, keyCode);
+        if(gui.pantallaActual == GUI.PANTALLA.LOGIN) {
+            gui.textFields[0].keyTyped(key);
+            gui.textFields[1].keyTyped(key);
 
-        if(gui.tList.getTextField().mouseOverTextField(this)){
-            gui.tList.getTextField().keyPressed(key, keyCode);
-            gui.tList.update(this);
+            gui.textFields[0].keyPressed(keyCode);
+            gui.textFields[1].keyPressed(keyCode);
+        }
+        else if(gui.pantallaActual == GUI.PANTALLA.SIGNIN) {
+            gui.textFields[2].keyTyped(key); gui.textFields[3].keyTyped(key);
+            gui.textFields[4].keyTyped(key); gui.textFields[5].keyTyped(key);
+            gui.textFields[6].keyTyped(key); gui.textFields[7].keyTyped(key);
+
+            gui.textFields[2].keyPressed(keyCode); gui.textFields[3].keyPressed(keyCode);
+            gui.textFields[4].keyPressed(keyCode); gui.textFields[5].keyPressed(keyCode);
+            gui.textFields[6].keyPressed(keyCode); gui.textFields[7].keyPressed(keyCode);
+
+            if(gui.tList.getTextField().mouseOverTextField(this)){
+                gui.tList.getTextField().keyPressed(key, keyCode);
+                gui.tList.update(this);
+            }
         }
 
         gui.videoExplica[0].typeOnCardItems(this);
