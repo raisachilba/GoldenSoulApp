@@ -1,5 +1,6 @@
 package GSApp;
 
+import GSApp.Data.BaseDatos;
 import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
 import processing.core.PApplet;
@@ -9,6 +10,8 @@ public class GoldenSoulApp extends PApplet {
     Colors c;
     Fonts fontsApp;
     GUI gui;
+    BaseDatos db;
+    boolean loginWrong = false;
 
     public static void main(String[] args) {
         PApplet.main("GSApp.GoldenSoulApp");
@@ -53,11 +56,15 @@ public class GoldenSoulApp extends PApplet {
                 break;
         }
 
+        if(loginWrong){
+            text("Usuario o contrseña incorrectos", width/2+170, 570);
+        }
+
         updateCursor(this);
     }
 
     public void keyPressed(){
-
+/*
         if(key == '0'){
             gui.pantallaActual = GUI.PANTALLA.LOGIN;
         }
@@ -82,6 +89,8 @@ public class GoldenSoulApp extends PApplet {
         else if(key == '7'){
             gui.pantallaActual = GUI.PANTALLA.TODO;
         }
+
+ */
        gui.textFields[0].keyPressed(key, keyCode); gui.textFields[1].keyPressed(key, keyCode);
        gui.textFields[2].keyPressed(key, keyCode); gui.textFields[3].keyPressed(key, keyCode);
        gui.textFields[4].keyPressed(key, keyCode); gui.textFields[5].keyPressed(key, keyCode);
@@ -102,7 +111,14 @@ public class GoldenSoulApp extends PApplet {
 
         if (gui.pantallaActual == GUI.PANTALLA.LOGIN) {
             if (gui.b1.mouseOverButton(this) && gui.b1.isEnabled()) {
-                gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+                String nom = gui.textFields[0].getText();
+                String password = gui.textFields[1].getText();
+                if(db.loginCorrecte(nom, password)){
+                    gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+                } else {
+                    println("LOGIN WRONG");
+                    loginWrong = true;
+                }
             } else if (gui.b4.mouseOverButton(this) && gui.b4.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.SIGNIN;
             }
