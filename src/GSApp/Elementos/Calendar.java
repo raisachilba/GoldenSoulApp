@@ -199,7 +199,7 @@ public class Calendar {
     }
 
     // Comprova si pitjam sobre els botons del Calendari
-    public  void checkButtons(PApplet p5){
+    public void checkButtons(PApplet p5){
         for(DayButton b : buttons){
             if((b!=null)&&(b.enabled)&&(b.mouseOver(p5))){
                 boolean prevState = b.selected;

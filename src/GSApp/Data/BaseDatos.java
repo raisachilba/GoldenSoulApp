@@ -45,26 +45,6 @@ public class BaseDatos {
         return 0;
     }
 
-    /*public String[][] getInfoTablaToDo(String[] info){
-        int nf = 5;
-        String q = "SELECT Usuario, Titulo, Objetivo, Estado"+
-                "FROM Usuario u, ToDo td"+
-                "WHERE u.Usuario=td.usuario";
-        System.out.println(q);
-        try{
-            ResultSet rs = query.executeQuery(q);
-            int f = 0;
-            while(rs.next()){
-                info[f][0] = rs.getString("Usuario");
-                f++;
-            }
-        }
-        catch(Exception e){
-
-        }
-    }
-
-     */
 
     public boolean loginCorrecte(String usuario, String password){
         String q = "SELECT COUNT(*) AS N "+

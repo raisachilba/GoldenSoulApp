@@ -15,7 +15,7 @@ public class GUI {
     //Base de datos
     BaseDatos bd;
 
-    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION,TODO};
+    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION, TODO, HORAS};
 
     // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate, paged table
     Button b1, b2, b3, b4, bPrev, bNext;
@@ -33,6 +33,8 @@ public class GUI {
 
     //Text field; introducir usuario y contraseña
     TextField[] textFields;
+
+    CheckBox[] horas;
 
     Medidas medida;
 
@@ -183,11 +185,28 @@ public class GUI {
         dibujaBotonesMenu(p5);
 
         calendario.display(p5);
+        if(calendario.isDateSelected()){
+            dibujaHorasClases(p5);
+        }
 
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
-            p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontTitulo());
+            p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontTitulo());
             p5.text("GOLDEN SOUL DANCE", 800, 130);
+        p5.popStyle();
+    }
+
+    public void dibujaHorasClases(PApplet p5){
+
+        p5.pushStyle();
+            p5.fill(c.getRedColor(p5,1)); p5.stroke(c.getGoldColor(p5,2)); p5.strokeWeight(3);
+            p5.rect(400, 400, 350, 450);
+        p5.popStyle();
+
+        p5.pushStyle();
+            p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontHoras());
+            p5.text("Reserva Clase", 410, 450);
+
         p5.popStyle();
     }
 
@@ -363,4 +382,7 @@ public class GUI {
         tablaToDo.setData(info);
     }
 
+    public void setCheckBoxHoras(PApplet p5){
+
+    }
 }

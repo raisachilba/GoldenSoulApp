@@ -44,7 +44,7 @@ public class Card {
                 p5.image(img, x+5, y+5, w-10, h/4);
             }
 
-            p5.fill(colorsCard.getGoldColor(p5, 1)); p5.textSize(midaSubtitol); p5.textFont(fontsCard.getFontCards());
+            p5.fill(colorsCard.getGoldColor(p5, 1)); p5.textFont(fontsCard.getFontCards());
             p5.text(titol, x+20, y+h/2 + 70);
 
             txtField.display(p5);
