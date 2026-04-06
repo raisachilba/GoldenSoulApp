@@ -96,6 +96,10 @@ public class GoldenSoulApp extends PApplet {
                 gui.tList.update(this);
             }
         }
+        else if(gui.pantallaActual == GUI.PANTALLA.HORAS){
+            gui.txtFieldInfoClase[0].keyTyped(key); gui.txtFieldInfoClase[1].keyTyped(key);
+            gui.txtFieldInfoClase[0].keyPressed(keyCode); gui.txtFieldInfoClase[1].keyPressed(keyCode);
+        }
 
     }
 
@@ -114,12 +118,8 @@ public class GoldenSoulApp extends PApplet {
             } else if (gui.b4.mouseOverButton(this) && gui.b4.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.SIGNUP;
             }
-            if(gui.textFields[0].mouseOverTextField(this)) {
-                gui.textFields[0].isPressed(this);
-            }
-            else if(gui.textFields[1].mouseOverTextField(this)){
-                gui.textFields[1].isPressed(this);
-            }
+            gui.textFields[0].isPressed(this);
+            gui.textFields[1].isPressed(this);
         }
 
         else if (gui.pantallaActual == GUI.PANTALLA.SIGNUP) {
@@ -198,12 +198,8 @@ public class GoldenSoulApp extends PApplet {
             else if(gui.horas[6].onMouseOver(this)){
                 gui.horas[6].toggle();
             }
-            else if(gui.txtFieldInfoClase[0].mouseOverTextField(this)){
-                gui.txtFieldInfoClase[0].isPressed(this);
-            }
-            else if(gui.txtFieldInfoClase[1].mouseOverTextField(this)){
-                gui.txtFieldInfoClase[1].isPressed(this);
-            }
+            gui.txtFieldInfoClase[0].isPressed(this);
+            gui.txtFieldInfoClase[1].isPressed(this);
         }
 
         else if (gui.pantallaActual == GUI.PANTALLA.COMPETICIONES) {

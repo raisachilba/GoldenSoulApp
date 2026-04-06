@@ -6,5 +6,6 @@ public class Medidas {
     public static float midaSubtitol = 50;
     public static float midaParagraf = 25;
     public static float midaText = 20;
+    public static float midaHoras = 23;
 
 }

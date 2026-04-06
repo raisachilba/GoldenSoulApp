@@ -8,8 +8,7 @@ import GSApp.Estetica.Medidas;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-import static GSApp.Estetica.Medidas.midaParagraf;
-import static GSApp.Estetica.Medidas.midaText;
+import static GSApp.Estetica.Medidas.*;
 
 public class GUI {
 
@@ -264,6 +263,17 @@ public class GUI {
 
         horas[0].display(p5); horas[1].display(p5); horas[2].display(p5); horas[3].display(p5);
         horas[4].display(p5); horas[5].display(p5); horas[6].display(p5);
+
+        p5.pushStyle();
+            p5.fill(0); p5.textSize(midaHoras);
+            p5.text("9:00", p5.width/2+30, 557);
+            p5.text("9:45", p5.width/2+30, 597);
+            p5.text("10:30", p5.width/2+30, 637);
+            p5.text("17:30", p5.width/2+30, 677);
+            p5.text("18:15", p5.width/2+270, 557);
+            p5.text("19:00", p5.width/2+270, 597);
+            p5.text("19:45", p5.width/2+270, 637);
+        p5.popStyle();
     }
 
     public void dibujaPantallaCalendComps(PApplet p5){
