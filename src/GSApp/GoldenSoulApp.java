@@ -36,7 +36,7 @@ public class GoldenSoulApp extends PApplet {
             case LOGIN: gui.dibujaPantallaLogIn(this);
                 break;
 
-            case SIGNIN: gui.dibujaPantallaSignIn(this);
+            case SIGNUP: gui.dibujaPantallaSignUp(this);
                 break;
 
             case PRINCIPAL: gui.dibujaPantallaPrincipal(this);
@@ -82,7 +82,7 @@ public class GoldenSoulApp extends PApplet {
             gui.textFields[0].keyPressed(keyCode);
             gui.textFields[1].keyPressed(keyCode);
         }
-        else if(gui.pantallaActual == GUI.PANTALLA.SIGNIN) {
+        else if(gui.pantallaActual == GUI.PANTALLA.SIGNUP) {
             gui.textFields[2].keyTyped(key); gui.textFields[3].keyTyped(key);
             gui.textFields[4].keyTyped(key); gui.textFields[5].keyTyped(key);
             gui.textFields[6].keyTyped(key); gui.textFields[7].keyTyped(key);
@@ -112,7 +112,7 @@ public class GoldenSoulApp extends PApplet {
                     loginWrong = true;
                 }
             } else if (gui.b4.mouseOverButton(this) && gui.b4.isEnabled()) {
-                gui.pantallaActual = GUI.PANTALLA.SIGNIN;
+                gui.pantallaActual = GUI.PANTALLA.SIGNUP;
             }
             if(gui.textFields[0].mouseOverTextField(this)) {
                 gui.textFields[0].isPressed(this);
@@ -122,7 +122,7 @@ public class GoldenSoulApp extends PApplet {
             }
         }
 
-        else if (gui.pantallaActual == GUI.PANTALLA.SIGNIN) {
+        else if (gui.pantallaActual == GUI.PANTALLA.SIGNUP) {
             if (gui.b2.mouseOverButton(this) && gui.b2.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
@@ -164,6 +164,46 @@ public class GoldenSoulApp extends PApplet {
                 gui.calendario.prevMonth();
             }
             gui.calendario.checkButtons(this);
+
+            if(gui.calendario.isDateSelected()){
+                gui.pantallaActual = GUI.PANTALLA.HORAS;
+            }
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.HORAS){
+            if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
+                gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+            }
+            else if(gui.b5.mouseOverButton(this) && gui.b5.isEnabled()){
+                gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+            }
+            else if(gui.horas[0].onMouseOver(this)){
+                gui.horas[0].toggle();
+            }
+            else if(gui.horas[1].onMouseOver(this)){
+                gui.horas[1].toggle();
+            }
+            else if(gui.horas[2].onMouseOver(this)){
+                gui.horas[2].toggle();
+            }
+            else if(gui.horas[3].onMouseOver(this)){
+                gui.horas[3].toggle();
+            }
+            else if(gui.horas[4].onMouseOver(this)){
+                gui.horas[4].toggle();
+            }
+            else if(gui.horas[5].onMouseOver(this)){
+                gui.horas[5].toggle();
+            }
+            else if(gui.horas[6].onMouseOver(this)){
+                gui.horas[6].toggle();
+            }
+            else if(gui.txtFieldInfoClase[0].mouseOverTextField(this)){
+                gui.txtFieldInfoClase[0].isPressed(this);
+            }
+            else if(gui.txtFieldInfoClase[1].mouseOverTextField(this)){
+                gui.txtFieldInfoClase[1].isPressed(this);
+            }
         }
 
         else if (gui.pantallaActual == GUI.PANTALLA.COMPETICIONES) {

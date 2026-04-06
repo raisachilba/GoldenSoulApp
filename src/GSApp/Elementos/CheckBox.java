@@ -1,5 +1,6 @@
 package GSApp.Elementos;
 
+import GSApp.Estetica.Colors;
 import processing.core.PApplet;
 
 public class CheckBox {
@@ -11,15 +12,18 @@ public class CheckBox {
 
     boolean checked;
 
+    Colors c;
+
     // Constructor
     public CheckBox(PApplet p5, int x, int y, int r){
         this.x = x;
         this.y = y;
         this.r = r;
+        c = new Colors(p5);
         this.checked = false;
-        this.bgColor = p5.color(255);
+        this.bgColor = p5.color(c.getRedColor(p5, 3));
+        this.checkedColor = p5.color(c.getRedColor(p5, 2));
         this.borderColor = p5.color(0);
-        this.checkedColor = p5.color(180);
     }
 
     // Getters

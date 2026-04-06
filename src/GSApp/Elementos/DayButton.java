@@ -22,8 +22,6 @@ public class DayButton {
         this.dia = d; this.mes = m; this.any = a;
         this.selected = false;
         this.enabled = true;
-
-        //NO DEIXA POSAR ELS COLORS AL CONSTRUCTOR DE DAY BUTTON
     }
 
     // Setters

@@ -9,16 +9,17 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 import static GSApp.Estetica.Medidas.midaParagraf;
+import static GSApp.Estetica.Medidas.midaText;
 
 public class GUI {
 
     //Base de datos
     BaseDatos bd;
 
-    public enum PANTALLA {LOGIN, SIGNIN, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION, TODO, HORAS};
+    public enum PANTALLA {LOGIN, SIGNUP, PRINCIPAL, COMPETICIONES, TECNICA, ELASTICIDAD, COORDINACION, TODO, HORAS};
 
-    // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate, paged table
-    Button b1, b2, b3, b4, bPrev, bNext;
+    // Botones: entrar, registrarse, volver a la pantalla principal, si no tienes cuenta regístrate, paged table, clase
+    Button b1, b2, b3, b4, bPrev, bNext, b5;
     Button[] bMenu;
 
     PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner; //Load image perque es png
@@ -31,8 +32,9 @@ public class GUI {
     Colors c;
     Fonts fontsApp;
 
-    //Text field; introducir usuario y contraseña
+    //Text Field log in, sign up
     TextField[] textFields;
+    TextField[] txtFieldInfoClase;
 
     CheckBox[] horas;
 
@@ -57,6 +59,18 @@ public class GUI {
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
     };
+    Table clases;
+    String[] headerClase = {"Hora", "Nombre"};
+    float[] colWidthClase = {40, 60};
+    String[][] infoClase = {
+            {"9:00", "Diana"},
+            {"9:45", ""},
+            {"10:30", "Juan"},
+            {"17:30", "David"},
+            {"18:15", "Maria"},
+            {"19:00", ""},
+            {"19:45", ""},
+    };
 
     public PANTALLA pantallaActual;
 
@@ -67,12 +81,14 @@ public class GUI {
         b2 = new Button(p5, "REGISTRARSE", p5.width/2+250, 860, 250, 70);
         b3 = new Button(p5, "VOLVER ATRÁS", 50, 860, 170, 30);
         b4 = new Button(p5, "No tienes cuenta? Regístrate", p5.width/2+350, 800, 300, 80);
+        b5 = new Button(p5, "RESERVA AHORA", p5.width/2, 790, 170, 50);
         bNext = new Button(p5, "NEXT", 200, 250, 70, 30);
         bPrev = new Button(p5, "PREV", 100, 250, 70, 30 );
         setButtons(p5);
 
         calendario = new CalendarPlus(p5, 800, 350, 600, 600, c);
         setPagedTable(p5);
+        setTablaClases(p5);
 
         this.dibujaVideoExplica(p5);
 
@@ -89,7 +105,11 @@ public class GUI {
         fotoBanner = p5.loadImage("data/Fotos/BallroomExtended.png");
 
         this.setTextField(p5);
+        this.setTxtFieldInfoClase(p5);
+
         tList = new TextList(p5, provincias, p5.width/2+170, 580, 400, 50);
+
+        this.setCheckBoxHoras(p5);
 
         pantallaActual = PANTALLA.LOGIN;
     }
@@ -133,7 +153,7 @@ public class GUI {
         p5.image(logoLogIn, 200, 330);
     }
 
-    public void dibujaPantallaSignIn(PApplet p5){
+    public void dibujaPantallaSignUp(PApplet p5){
         p5.background(230);
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
@@ -185,9 +205,6 @@ public class GUI {
         dibujaBotonesMenu(p5);
 
         calendario.display(p5);
-        if(calendario.isDateSelected()){
-            dibujaHorasClases(p5);
-        }
 
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
@@ -197,17 +214,56 @@ public class GUI {
     }
 
     public void dibujaHorasClases(PApplet p5){
+        p5.background(230);
+
+        dibujaLogoBanner(p5);
 
         p5.pushStyle();
-            p5.fill(c.getRedColor(p5,1)); p5.stroke(c.getGoldColor(p5,2)); p5.strokeWeight(3);
-            p5.rect(400, 400, 350, 450);
+            p5.textAlign(p5.CENTER);
+            p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontTitulo());
+            p5.text("RESERVA CLASE", 800, 130);
+        p5.popStyle();
+
+        b3.display(p5);
+        b5.display(p5);
+
+        clases.display(p5, 100, 300, 400, 500);
+
+        txtFieldInfoClase[0].display(p5);
+        txtFieldInfoClase[1].display(p5);
+
+        String fecha = calendario.getSelectedDate();
+
+        p5.pushStyle();
+            p5.fill(c.getRedColor(p5, 3));
+            p5.rect(p5.width/2, 720, 400, 50, 5);
+            p5.pushStyle();
+                p5.textSize(midaText); p5.fill(0);
+                p5.text(fecha, p5.width/2+10, 750);
+            p5.popStyle();
         p5.popStyle();
 
         p5.pushStyle();
-            p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontHoras());
-            p5.text("Reserva Clase", 410, 450);
+            p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontHoras()); p5.strokeWeight(5);
+            p5.text("Clases cogidas", 100, 280);
+            p5.text("Reserva clase", p5.width/2, 280);
 
+            p5.pushStyle();
+                p5.textSize(midaParagraf); p5.strokeWeight(5);
+                p5.text(fecha, 410, 280);
+            p5.popStyle();
+
+            p5.pushStyle();
+                p5.textSize(midaParagraf); p5.strokeWeight(5); p5.fill(0);
+                p5.text("Nombre", p5.width/2, 320);
+                p5.text("Tipo de clase", p5.width/2, 420);
+                p5.text("Hora", p5.width/2, 520);
+                p5.text("Fecha", p5.width/2, 710);
+            p5.popStyle();
         p5.popStyle();
+
+        horas[0].display(p5); horas[1].display(p5); horas[2].display(p5); horas[3].display(p5);
+        horas[4].display(p5); horas[5].display(p5); horas[6].display(p5);
     }
 
     public void dibujaPantallaCalendComps(PApplet p5){
@@ -344,7 +400,9 @@ public class GUI {
         else if (pantallaActual == PANTALLA.TODO){
             p5.image(logoBotonesEntradas, 0, 0);
         }
-
+        else if(pantallaActual == PANTALLA.HORAS) {
+            p5.image(logoPrincipal, 0, 0);
+        }
     }
 
     public void setTextField(PApplet p5){
@@ -382,7 +440,30 @@ public class GUI {
         tablaToDo.setData(info);
     }
 
-    public void setCheckBoxHoras(PApplet p5){
+    public void setTablaClases(PApplet p5){
+        clases = new Table(8, 2);
+        clases.setColumnWidths(colWidthClase);
+        clases.setHeaders(headerClase);
+        clases.setData(infoClase);
+    }
 
+    public void setTxtFieldInfoClase(PApplet p5) {
+        txtFieldInfoClase = new TextField[2];
+
+        txtFieldInfoClase[0] = new TextField(p5, p5.width/2, 330, 400, 50);
+        txtFieldInfoClase[1] = new TextField(p5, p5.width/2, 430, 400, 50);
+    }
+
+    public void setCheckBoxHoras(PApplet p5){
+        horas = new CheckBox[7];
+
+        horas[0] = new CheckBox(p5, p5.width/2+10, 550, 20);
+        horas[1] = new CheckBox(p5, p5.width/2+10, 590, 20);
+        horas[2] = new CheckBox(p5, p5.width/2+10, 630, 20);
+        horas[3] = new CheckBox(p5, p5.width/2+10, 670, 20);
+
+        horas[4] = new CheckBox(p5, p5.width/2+250, 550, 20);
+        horas[5] = new CheckBox(p5, p5.width/2+250, 590, 20);
+        horas[6] = new CheckBox(p5, p5.width/2+250, 630, 20);
     }
 }

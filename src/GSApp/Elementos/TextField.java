@@ -23,9 +23,9 @@ public class TextField extends PApplet{
     public TextField(PApplet p5, int x, int y, int w, int h) {
         this.x = x; this.y = y; this.w = w; this.h = h;
         c = new Colors(p5);
-        this.bgColor = p5.color(200);
+        this.bgColor = p5.color(c.getRedColor(p5, 3));
         this.fgColor = p5.color(0, 0, 0);
-        this.selectedColor = p5.color(c.getRedColor(p5,3));
+        this.selectedColor = p5.color(c.getRedColor(p5,2));
         this.borderColor = p5.color(30, 30, 30);
         this.borderWeight = 1;
     }
@@ -121,7 +121,6 @@ public class TextField extends PApplet{
 
         addText(key);
     }
-
 
     // Selecciona el camp de text si pitjam a sobre
     // Deselecciona el camp de text si pitjam a fora
