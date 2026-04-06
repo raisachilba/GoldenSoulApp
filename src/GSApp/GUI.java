@@ -1,6 +1,7 @@
 package GSApp;
 
 import GSApp.Data.BaseDatos;
+import GSApp.Data.DateConversion;
 import GSApp.Elementos.*;
 import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
@@ -62,11 +63,11 @@ public class GUI {
     String[] headerClase = {"Hora", "Nombre"};
     float[] colWidthClase = {40, 60};
     String[][] infoClase = {
-            {"9:00", "Diana"},
+            {"9:00", ""},
             {"9:45", ""},
-            {"10:30", "Juan"},
-            {"17:30", "David"},
-            {"18:15", "Maria"},
+            {"10:30", ""},
+            {"17:30", ""},
+            {"18:15", ""},
             {"19:00", ""},
             {"19:45", ""},
     };
@@ -74,6 +75,9 @@ public class GUI {
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
+        bd = new BaseDatos("admin", "12345", "todos");
+        bd.connect();
+
         c = new Colors(p5);
 
         b1 = new Button(p5, "ENTRAR", p5.width/2+250, 600, 250, 90);
@@ -500,5 +504,48 @@ public class GUI {
         horas[4] = new CheckBox(p5, p5.width/2+250, 550, 20);
         horas[5] = new CheckBox(p5, p5.width/2+250, 590, 20);
         horas[6] = new CheckBox(p5, p5.width/2+250, 630, 20);
+    }
+
+    public void actualizarTablaClases(){
+
+        String fecha = DateConversion.formataFechaEng(calendario.getSelectedDate());
+
+        String[][] datos = bd.getClasesPorDia(fecha);
+
+        // Limpiar tabla
+        for(int i = 0; i < infoClase.length; i++){
+            infoClase[i][1] = "";
+        }
+
+        // Rellenar con datos
+        for(int i = 0; i < datos.length; i++){
+
+            if(datos[i][0] != null){
+
+                String horaBD = datos[i][0];
+                String nombre = datos[i][1];
+
+                for(int j = 0; j < infoClase.length; j++){
+
+                    String horaTabla = infoClase[j][0];
+                    if(horaTabla.length() == 4){ // "9:00"
+                        horaTabla = "0" + horaTabla;
+                    }
+
+                    horaTabla += ":00";
+
+                    if(horaBD.equals(horaTabla)){
+
+                        if(infoClase[j][1].equals("")){
+                            infoClase[j][1] = nombre;
+                        } else {
+                            infoClase[j][1] += ", " + nombre;
+                        }
+                    }
+                }
+            }
+        }
+
+        clases.setData(infoClase);
     }
 }

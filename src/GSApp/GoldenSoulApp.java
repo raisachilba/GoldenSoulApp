@@ -1,6 +1,7 @@
 package GSApp;
 
 import GSApp.Data.BaseDatos;
+import GSApp.Data.DateConversion;
 import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
 import processing.core.PApplet;
@@ -124,6 +125,15 @@ public class GoldenSoulApp extends PApplet {
 
         else if (gui.pantallaActual == GUI.PANTALLA.SIGNUP) {
             if (gui.b2.mouseOverButton(this) && gui.b2.isEnabled()) {
+                String usuario = gui.textFields[2].getText();
+                String nombre = gui.textFields[3].getText();
+                String apellido = gui.textFields[4].getText();
+                String pais = gui.textFields[5].getText();
+                String provincia = gui.tList.getSelectedValue();
+                String domicilio = gui.textFields[6].getText();
+                String password = gui.textFields[7].getText();
+
+                db.insertarUsuario(usuario, nombre, apellido, pais, provincia, domicilio, password);
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
 
@@ -170,6 +180,8 @@ public class GoldenSoulApp extends PApplet {
             }
             else if(gui.calendario.isDateSelected()){
                 gui.pantallaActual = GUI.PANTALLA.HORAS;
+
+                gui.actualizarTablaClases();
             }
         }
 
@@ -178,6 +190,27 @@ public class GoldenSoulApp extends PApplet {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
             else if(gui.b5.mouseOverButton(this) && gui.b5.isEnabled()){
+                String nombre = gui.txtFieldInfoClase[0].getText();
+                String fechaOg = gui.calendario.getSelectedDate();
+                String fechaSQL = DateConversion.formataFechaEng(fechaOg);
+
+                String hora = "";
+
+                if(gui.horas[0].isChecked()){hora = "9:00";}
+                else if(gui.horas[1].isChecked()){hora = "9:45";}
+                else if(gui.horas[2].isChecked()){hora = "10:30";}
+                else if(gui.horas[3].isChecked()){hora = "17:30";}
+                else if(gui.horas[4].isChecked()){hora = "18:15";}
+                else if(gui.horas[5].isChecked()){hora = "19:00";}
+                else if(gui.horas[6].isChecked()){hora = "19:45";}
+
+                if(hora.equals("")){
+                    println("Selecciona una hora");
+                    return;
+                }
+                db.reservaClase(nombre, fechaSQL, hora);
+                gui.actualizarTablaClases();
+
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
             else if(gui.horas[0].onMouseOver(this)){
