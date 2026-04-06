@@ -224,4 +224,12 @@ public class Calendar {
             }
         }
     }
+
+    public void resetSelection(){
+        deselectAll();
+        dateSelected = false;
+        selectedDay = 0;
+        selectedMonth = mes;
+        selectedYear = any;
+    }
 }

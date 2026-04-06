@@ -21,7 +21,7 @@ public class GUI {
     Button b1, b2, b3, b4, bPrev, bNext, b5;
     Button[] bMenu;
 
-    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner; //Load image perque es png
+    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner;
 
     TextList tList;
     String[] provincias = {"Alicante", "Asturias", "Barcelona", "Cádiz", "Girona", "Granada",
@@ -45,7 +45,7 @@ public class GUI {
 
     PagedTable tablaToDo;
     String[] headers = {"Nombre","Baile", "Objetivo", "Explicación", "Estado"};
-    float[] colWidth = {20, 10, 20, 40, 10};
+    float[] colWidth = {20, 15, 20, 35, 10};
     String[][] info = {
             {"Pere Soler", "Rumba", "Personal", "...", "Done"},
             {"Pere Soler", "Samba", "Expresivo", "...", "Done"},
@@ -292,6 +292,31 @@ public class GUI {
 
         dibujaBotonesMenu(p5);
         b3.display(p5);
+
+        if(calendario.isDateSelected()){
+            p5.pushStyle();
+                p5.rectMode(p5.CORNER); p5.fill(c.getRedColor(p5, 1)); p5.stroke(c.getGoldColor(p5, 1)); p5.strokeWeight(5);
+                p5.rect(400, 350, 350, 300, 5);
+            p5.popStyle();
+
+            p5.pushStyle();
+                p5.fill(c.getGoldColor(p5, 1));
+                p5.text("Lisbon Open", 410, 400);
+            p5.popStyle();
+
+            p5.pushStyle();
+                p5.textSize(midaParagraf); p5.fill(c.getGoldColor(p5,1));
+                p5.text("10/04 - 11/04", 410, 450);
+                p5.text("Federación: WDO", 410, 500);
+                p5.text("Organizador: Artem Petrukhin", 410, 530);
+                p5.text("Lisboa, Portugal", 410, 570);
+                p5.pushStyle();
+                    p5.textSize(midaText); p5.fill(150);
+                    p5.text("Eurostrars Universal Lisboa Hotel", 410, 590);
+                p5.popStyle();
+                p5.text("Fin de registro: 4/04", 410, 630);
+            p5.popStyle();
+        }
     }
 
     public void dibujaPantallaTecnica(PApplet p5){
@@ -357,11 +382,11 @@ public class GUI {
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
-            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones());
             p5.text("TO-DO LIST", 800, 130);
         p5.popStyle();
 
-        tablaToDo.display(p5, 100, 300, 700, 500);
+        tablaToDo.display(p5, 100, 300, 1250, 500);
 
         bNext.display(p5);
         bPrev.display(p5);

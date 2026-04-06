@@ -163,9 +163,12 @@ public class GoldenSoulApp extends PApplet {
             else if (gui.calendario.bPrev.mouseOverButton(this) && gui.calendario.bPrev.isEnabled()) {
                 gui.calendario.prevMonth();
             }
-            gui.calendario.checkButtons(this);
 
-            if(gui.calendario.isDateSelected()){
+            gui.calendario.checkButtons(this);
+            if(gui.calendario.bOK.mouseOverButton(this) && gui.calendario.bOK.isEnabled()){
+                gui.calendario.resetSelection();
+            }
+            else if(gui.calendario.isDateSelected()){
                 gui.pantallaActual = GUI.PANTALLA.HORAS;
             }
         }
@@ -224,8 +227,17 @@ public class GoldenSoulApp extends PApplet {
             else if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
+            else if (gui.calendario.bNext.mouseOverButton(this) && gui.calendario.bNext.isEnabled()) {
+                gui.calendario.nextMonth();
+            }
+            else if (gui.calendario.bPrev.mouseOverButton(this) && gui.calendario.bPrev.isEnabled()) {
+                gui.calendario.prevMonth();
+            }
 
             gui.calendario.checkButtons(this);
+            if(gui.calendario.bOK.mouseOverButton(this) && gui.calendario.bOK.isEnabled()){
+                gui.calendario.resetSelection();
+            }
         }
 
         else if (gui.pantallaActual == GUI.PANTALLA.TECNICA) {
@@ -269,16 +281,54 @@ public class GoldenSoulApp extends PApplet {
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(this) || gui.b2.updateHandCursor(this) || gui.b3.updateHandCursor(this)
-                || gui.b4.updateHandCursor(this) || gui.bMenu[0].updateHandCursor(this) || gui.bMenu[1].updateHandCursor(this)
-                || gui.bMenu[2].updateHandCursor(this) || gui.bMenu[3].updateHandCursor(this)
-                || gui.bMenu[4].updateHandCursor(this) || gui.bMenu[5].updateHandCursor(this)
-                || gui.bNext.updateHandCursor(this) || gui.bPrev.updateHandCursor(this) || gui.calendario.bPrev.updateHandCursor(this)
-                || gui.calendario.bNext.updateHandCursor(this) || gui.calendario.bOK.updateHandCursor(this)){
-
-            cursor(HAND);
+        boolean over = false;
+        if(gui.pantallaActual == GUI.PANTALLA.LOGIN){
+            over = gui.b1.updateHandCursor(this) || gui.b2.updateHandCursor(this) || gui.b4.updateHandCursor(this);
         }
-        else{
+
+        else if(gui.pantallaActual == GUI.PANTALLA.SIGNUP){
+            over = gui.b2.updateHandCursor(this);
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.PRINCIPAL){
+            over = gui.bMenu[0].updateHandCursor(this) || gui.bMenu[1].updateHandCursor(this)
+                    || gui.bMenu[2].updateHandCursor(this) || gui.bMenu[3].updateHandCursor(this)
+                    || gui.bMenu[4].updateHandCursor(this) || gui.bMenu[5].updateHandCursor(this)
+                    || gui.calendario.bPrev.updateHandCursor(this) || gui.calendario.bNext.updateHandCursor(this)
+                    || gui.calendario.bOK.updateHandCursor(this);
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.HORAS){
+            over = gui.b3.updateHandCursor(this) || gui.b5.updateHandCursor(this);
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.COMPETICIONES){
+            over = gui.bMenu[0].updateHandCursor(this) || gui.bMenu[1].updateHandCursor(this)
+                    || gui.bMenu[2].updateHandCursor(this) || gui.bMenu[3].updateHandCursor(this)
+                    || gui.bMenu[4].updateHandCursor(this) || gui.bMenu[5].updateHandCursor(this)
+                    || gui.b3.updateHandCursor(this) ||gui.calendario.bPrev.updateHandCursor(this)
+                    || gui.calendario.bNext.updateHandCursor(this) || gui.calendario.bOK.updateHandCursor(this);
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.TECNICA){
+            over = gui.b3.updateHandCursor(this);
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.ELASTICIDAD){
+            over = gui.b3.updateHandCursor(this);
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.COORDINACION){
+            over = gui.b3.updateHandCursor(this);
+        }
+
+        else if(gui.pantallaActual == GUI.PANTALLA.TODO){
+            over = gui.b3.updateHandCursor(this);
+        }
+
+        if(over){
+            cursor(HAND);
+        } else{
             cursor(ARROW);
         }
     }
