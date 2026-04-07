@@ -1,6 +1,7 @@
 package GSApp;
 
 import GSApp.Data.BaseDatos;
+import GSApp.Data.Competicion;
 import GSApp.Data.DateConversion;
 import GSApp.Elementos.*;
 import GSApp.Estetica.Colors;
@@ -8,6 +9,8 @@ import GSApp.Estetica.Fonts;
 import GSApp.Estetica.Medidas;
 import processing.core.PApplet;
 import processing.core.PImage;
+
+import java.sql.ResultSet;
 
 import static GSApp.Estetica.Medidas.*;
 
@@ -72,10 +75,23 @@ public class GUI {
             {"19:45", ""},
     };
 
+    Competicion compActual;
+    /*String nombreComp = "";
+    String fechaInicio = "";
+    String fechaFin = "";
+    String federacion = "";
+    String organizador = "";
+    String lugar = "";
+    String ubicacion = "";
+    String finRegistro = "";
+    boolean hayCompeticion = false;
+
+     */
+
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
-        bd = new BaseDatos("admin", "12345", "todos");
+        bd = new BaseDatos("admin", "12345", "GoldenSoulApp");
         bd.connect();
 
         c = new Colors(p5);
@@ -110,7 +126,7 @@ public class GUI {
         this.setTextField(p5);
         this.setTxtFieldInfoClase(p5);
 
-        tList = new TextList(p5, provincias, p5.width/2+170, 580, 400, 50);
+        tList = new TextList(p5, provincias, p5.width/2+170, 620, 400, 50);
 
         this.setCheckBoxHoras(p5);
 
@@ -160,9 +176,9 @@ public class GUI {
         p5.background(230);
         p5.pushStyle();
             p5.fill(c.getRedColor(p5, 1));
-            p5.rect(p5.width/2+170, 50, 400, 80);
+            p5.rect(p5.width/2+170, 40, 400, 80);
             p5.textAlign(p5.CENTER); p5.fill(c.getGoldColor(p5, 1)); p5.textFont(fontsApp.getFontLogIn()); //Ús de fonts
-            p5.text("SIGN IN", 1110, 110);
+            p5.text("SIGN IN", 1110, 100);
         p5.popStyle();
 
         p5.pushMatrix();
@@ -180,17 +196,18 @@ public class GUI {
 
         p5.pushStyle();
             p5.fill(0); p5.textSize(midaParagraf);
-            p5.text("Nombre", p5.width/2+170, 170);
-            p5.text("Apellidos", p5.width/2+170, 270);
-            p5.text("Fecha nacimiento", p5.width/2+170, 370);
-            p5.text("País", p5.width/2+170, 470);
-            p5.text("Província", p5.width/2+170, 570);
-            p5.text("Domicilio", p5.width/2+170, 670);
-            p5.text("Contraseña", p5.width/2+170, 770);
+            p5.text("Usuario", p5.width/2+170, 160);
+            p5.text("Nombre", p5.width/2+170, 250);
+            p5.text("Apellidos", p5.width/2+170, 340);
+            p5.text("Fecha nacimiento", p5.width/2+170, 430);
+            p5.text("País", p5.width/2+170, 520);
+            p5.text("Província", p5.width/2+170, 610);
+            p5.text("Domicilio", p5.width/2+170, 700);
+            p5.text("Contraseña", p5.width/2+170, 790);
         p5.popStyle();
 
         textFields[2].display(p5); textFields[3].display(p5); textFields[4].display(p5); textFields[5].display(p5);
-        textFields[6].display(p5); textFields[7].display(p5);
+        textFields[6].display(p5); textFields[7].display(p5); textFields[8].display(p5);
 
         b2.display(p5);
 
@@ -298,28 +315,46 @@ public class GUI {
         b3.display(p5);
 
         if(calendario.isDateSelected()){
+            String fechaOg = calendario.getSelectedDate();
+            String fechaSQL = DateConversion.formataFechaEng(fechaOg);
+
+            compActual = cargarCompeticionDelDia(fechaSQL, bd);
+
             p5.pushStyle();
                 p5.rectMode(p5.CORNER); p5.fill(c.getRedColor(p5, 1)); p5.stroke(c.getGoldColor(p5, 1)); p5.strokeWeight(5);
                 p5.rect(400, 350, 350, 300, 5);
             p5.popStyle();
 
-            p5.pushStyle();
-                p5.fill(c.getGoldColor(p5, 1));
-                p5.text("Lisbon Open", 410, 400);
-            p5.popStyle();
-
-            p5.pushStyle();
-                p5.textSize(midaParagraf); p5.fill(c.getGoldColor(p5,1));
-                p5.text("10/04 - 11/04", 410, 450);
-                p5.text("Federación: WDO", 410, 500);
-                p5.text("Organizador: Artem Petrukhin", 410, 530);
-                p5.text("Lisboa, Portugal", 410, 570);
+            if(compActual != null) {
                 p5.pushStyle();
-                    p5.textSize(midaText); p5.fill(150);
-                    p5.text("Eurostrars Universal Lisboa Hotel", 410, 590);
+                    p5.fill(c.getGoldColor(p5, 1)); p5.textAlign(p5.LEFT, p5.TOP); p5.textFont(fontsApp.getFontComp());
+                    p5.text(compActual.nombre, 410, 370, 320, 120);
                 p5.popStyle();
-                p5.text("Fin de registro: 4/04", 410, 630);
-            p5.popStyle();
+
+                p5.pushStyle();
+                    p5.textSize(midaParagraf); p5.fill(c.getGoldColor(p5, 1));
+                    if(compActual.fechaInicio.equals(compActual.fechaFin)){
+                        p5.text(compActual.fechaInicio, 410, 470);
+                    }
+                    else{
+                        p5.text(compActual.fechaInicio+" - "+compActual.fechaFin, 410, 470);
+                    }
+                    p5.text("Federación: "+compActual.federacion, 410, 500);
+                    p5.text("Organizador: "+compActual.organizador, 410, 530);
+                    p5.text(compActual.lugar, 410, 570);
+                    p5.pushStyle();
+                        p5.textSize(midaText); p5.fill(150);
+                        p5.text(compActual.ubicacion, 410, 590);
+                    p5.popStyle();
+                    p5.text("Fin de registro: "+compActual.finRegistro, 410, 630);
+                p5.popStyle();
+            }
+            else{
+                p5.pushStyle();
+                    p5.fill(c.getGoldColor(p5, 1)); p5.textAlign(p5.CENTER); p5.textSize(midaParagraf);
+                    p5.text("No hay competición disponible", 575, 500);
+                p5.popStyle();
+            }
         }
     }
 
@@ -374,7 +409,6 @@ public class GUI {
         p5.popStyle();
     }
 
-    //LA PAGED TABLE NO ES DIBUIXA TAL COM TOCA
     public void dibujaPantalllaToDo(PApplet p5){
 
         p5.background(230);
@@ -445,19 +479,20 @@ public class GUI {
     }
 
     public void setTextField(PApplet p5){
-        textFields = new TextField[8];
+        textFields = new TextField[9];
 
         //Text field LOG IN
         textFields[0] = new TextField(p5, p5.width/2+170, 400, 400, 60);
         textFields[1] = new TextField(p5, p5.width/2+170, 500, 400, 60);
 
         //Text field SIGN IN
-        textFields[2] = new TextField(p5, p5.width/2+170, 180, 400, 50);
-        textFields[3] = new TextField(p5, p5.width/2+170, 280, 400, 50);
-        textFields[4] = new TextField(p5, p5.width/2+170, 380, 400, 50);
-        textFields[5] = new TextField(p5, p5.width/2+170, 480, 400, 50);
-        textFields[6] = new TextField(p5, p5.width/2+170, 680, 400, 50);
-        textFields[7] = new TextField(p5, p5.width/2+170, 780, 400, 50);
+        textFields[2] = new TextField(p5, p5.width/2+170, 170, 400, 50);
+        textFields[3] = new TextField(p5, p5.width/2+170, 260, 400, 50);
+        textFields[4] = new TextField(p5, p5.width/2+170, 350, 400, 50);
+        textFields[5] = new TextField(p5, p5.width/2+170, 440, 400, 50);
+        textFields[6] = new TextField(p5, p5.width/2+170, 530, 400, 50);
+        textFields[7] = new TextField(p5, p5.width/2+170, 710, 400, 50);
+        textFields[8] = new TextField(p5, p5.width/2+170, 800, 400, 50);
     }
 
     public void dibujaVideoExplica(PApplet p5){
@@ -506,46 +541,59 @@ public class GUI {
         horas[6] = new CheckBox(p5, p5.width/2+250, 630, 20);
     }
 
-    public void actualizarTablaClases(){
-
-        String fecha = DateConversion.formataFechaEng(calendario.getSelectedDate());
-
-        String[][] datos = bd.getClasesPorDia(fecha);
-
-        // Limpiar tabla
+    public void cargarClasesDelDia(String fecha, BaseDatos bd){
         for(int i = 0; i < infoClase.length; i++){
             infoClase[i][1] = "";
         }
 
-        // Rellenar con datos
-        for(int i = 0; i < datos.length; i++){
+        try {
+            ResultSet rs = bd.getClasesPorDia(fecha);
 
-            if(datos[i][0] != null){
+            while(rs.next()){
+                String nombre = rs.getString("Nombre");
+                String hora = rs.getString("Hora");
 
-                String horaBD = datos[i][0];
-                String nombre = datos[i][1];
+                hora = hora.substring(0,5);
+                if(hora.startsWith("0")){
+                    hora = hora.substring(1);
+                }
 
-                for(int j = 0; j < infoClase.length; j++){
-
-                    String horaTabla = infoClase[j][0];
-                    if(horaTabla.length() == 4){ // "9:00"
-                        horaTabla = "0" + horaTabla;
-                    }
-
-                    horaTabla += ":00";
-
-                    if(horaBD.equals(horaTabla)){
-
-                        if(infoClase[j][1].equals("")){
-                            infoClase[j][1] = nombre;
-                        } else {
-                            infoClase[j][1] += ", " + nombre;
-                        }
+                for(int i = 0; i < infoClase.length; i++){
+                    if(infoClase[i][0].equals(hora)){
+                        infoClase[i][1] = nombre;
                     }
                 }
             }
+            clases.setData(infoClase);
         }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
-        clases.setData(infoClase);
+    public Competicion cargarCompeticionDelDia(String fechaSQL, BaseDatos db){
+        try{
+            ResultSet rs = db.getCompeticionPorFecha(fechaSQL);
+            if(rs.next()){
+                System.out.println("SI hay competición");
+
+                return new Competicion(
+                        rs.getString("Nombre"),
+                        DateConversion.formataFechaEsp(rs.getString("FechaInicio")),
+                        DateConversion.formataFechaEsp(rs.getString("FechaFin")),
+                        rs.getString("Federacion"),
+                        rs.getString("Organizador"),
+                        rs.getString("Lugar"),
+                        rs.getString("Ubicacion"),
+                        DateConversion.formataFechaEsp(rs.getString("FinRegistro"))
+                );
+            }
+            else{
+                System.out.println("NO hay competición");
+            }
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
 }

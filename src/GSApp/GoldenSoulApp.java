@@ -25,7 +25,7 @@ public class GoldenSoulApp extends PApplet {
     public void setup(){
         c = new Colors(this);
         fontsApp = new Fonts(this);
-        db = new BaseDatos("admin", "12345", "todos");
+        db = new BaseDatos("admin", "12345", "GoldenSoulApp");
         db.connect();
         gui = new GUI(this);
     }
@@ -87,10 +87,12 @@ public class GoldenSoulApp extends PApplet {
             gui.textFields[2].keyTyped(key); gui.textFields[3].keyTyped(key);
             gui.textFields[4].keyTyped(key); gui.textFields[5].keyTyped(key);
             gui.textFields[6].keyTyped(key); gui.textFields[7].keyTyped(key);
+            gui.textFields[8].keyTyped(key);
 
             gui.textFields[2].keyPressed(keyCode); gui.textFields[3].keyPressed(keyCode);
             gui.textFields[4].keyPressed(keyCode); gui.textFields[5].keyPressed(keyCode);
             gui.textFields[6].keyPressed(keyCode); gui.textFields[7].keyPressed(keyCode);
+            gui.textFields[8].keyPressed(keyCode);
 
             if(gui.tList.getTextField().mouseOverTextField(this)){
                 gui.tList.getTextField().keyPressed(key, keyCode);
@@ -128,12 +130,13 @@ public class GoldenSoulApp extends PApplet {
                 String usuario = gui.textFields[2].getText();
                 String nombre = gui.textFields[3].getText();
                 String apellido = gui.textFields[4].getText();
-                String pais = gui.textFields[5].getText();
+                String fecha = gui.textFields[5].getText();
+                String pais = gui.textFields[6].getText();
                 String provincia = gui.tList.getSelectedValue();
-                String domicilio = gui.textFields[6].getText();
-                String password = gui.textFields[7].getText();
+                String domicilio = gui.textFields[7].getText();
+                String password = gui.textFields[8].getText();
 
-                db.insertarUsuario(usuario, nombre, apellido, pais, provincia, domicilio, password);
+                db.insertarUsuario(usuario, nombre, apellido, fecha, pais, provincia, domicilio, password);
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
 
@@ -143,6 +146,7 @@ public class GoldenSoulApp extends PApplet {
             gui.textFields[5].isPressed(this);
             gui.textFields[6].isPressed(this);
             gui.textFields[7].isPressed(this);
+            gui.textFields[8].isPressed(this);
 
             gui.tList.getTextField().isPressed(this);
             gui.tList.buttonPressed(this);
@@ -179,13 +183,16 @@ public class GoldenSoulApp extends PApplet {
                 gui.calendario.resetSelection();
             }
             else if(gui.calendario.isDateSelected()){
-                gui.pantallaActual = GUI.PANTALLA.HORAS;
+                String fechaOg = gui.calendario.getSelectedDate();
+                String fechaSQL = DateConversion.formataFechaEng(fechaOg);
+                gui.cargarClasesDelDia(fechaSQL, db);
 
-                gui.actualizarTablaClases();
+                gui.pantallaActual = GUI.PANTALLA.HORAS;
             }
         }
 
         else if(gui.pantallaActual == GUI.PANTALLA.HORAS){
+
             if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
@@ -196,20 +203,19 @@ public class GoldenSoulApp extends PApplet {
 
                 String hora = "";
 
-                if(gui.horas[0].isChecked()){hora = "9:00";}
-                else if(gui.horas[1].isChecked()){hora = "9:45";}
-                else if(gui.horas[2].isChecked()){hora = "10:30";}
-                else if(gui.horas[3].isChecked()){hora = "17:30";}
-                else if(gui.horas[4].isChecked()){hora = "18:15";}
-                else if(gui.horas[5].isChecked()){hora = "19:00";}
-                else if(gui.horas[6].isChecked()){hora = "19:45";}
+                if(gui.horas[0].isChecked()){hora = "09:00:00";}
+                else if(gui.horas[1].isChecked()){hora = "09:45:00";}
+                else if(gui.horas[2].isChecked()){hora = "10:30:00";}
+                else if(gui.horas[3].isChecked()){hora = "17:30:00";}
+                else if(gui.horas[4].isChecked()){hora = "18:15:00";}
+                else if(gui.horas[5].isChecked()){hora = "19:00:00";}
+                else if(gui.horas[6].isChecked()){hora = "19:45:00";}
 
                 if(hora.equals("")){
                     println("Selecciona una hora");
                     return;
                 }
                 db.reservaClase(nombre, fechaSQL, hora);
-                gui.actualizarTablaClases();
 
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
@@ -266,7 +272,6 @@ public class GoldenSoulApp extends PApplet {
             else if (gui.calendario.bPrev.mouseOverButton(this) && gui.calendario.bPrev.isEnabled()) {
                 gui.calendario.prevMonth();
             }
-
             gui.calendario.checkButtons(this);
             if(gui.calendario.bOK.mouseOverButton(this) && gui.calendario.bOK.isEnabled()){
                 gui.calendario.resetSelection();

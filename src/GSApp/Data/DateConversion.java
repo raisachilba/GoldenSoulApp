@@ -11,9 +11,6 @@ public class DateConversion {
         String m = fechaEntrada.split("-")[1];
         String d = fechaEntrada.split("-")[2];
 
-        if(m.length() == 1) m = "0" + m;
-        if(d.length() == 1) d = "0" + d;
-
         return d+"/"+m+"/"+y;
     }
 
@@ -22,6 +19,9 @@ public class DateConversion {
         String y = fechaEntrada.split("/")[2];
         String m = fechaEntrada.split("/")[1];
         String d = fechaEntrada.split("/")[0];
+
+        if(m.length() == 1) m = "0" + m;
+        if(d.length() == 1) d = "0" + d;
 
         return y+"-"+m+"-"+d;
     }

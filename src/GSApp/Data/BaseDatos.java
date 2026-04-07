@@ -1,9 +1,6 @@
 package GSApp.Data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class BaseDatos {
 
@@ -62,9 +59,9 @@ public class BaseDatos {
         return false;
     }
 
-    public void insertarUsuario(String u, String n, String a, String pais, String prov, String d, String c){
-        String q = "INSERT INTO Usuario (Usuario, Nombre, Apellido, Pais, Provincia, Domicilio, Contraseña) " +
-                "VALUES ('"+u+"', '"+n+"', '"+a+"', '"+pais+"', '"+prov+"', '"+d+"', '"+c+"')";
+    public void insertarUsuario(String u, String n, String a, String f, String pais, String prov, String d, String c){
+        String q = "INSERT INTO Usuario (Usuario, Nombre, Apellido, FechaNacimiento, Pais, Provincia, Domicilio, Contraseña) " +
+                "VALUES ('"+u+"', '"+n+"', '"+a+"', '"+f+"', '"+pais+"', '"+prov+"', '"+d+"', '"+c+"')";
         System.out.println(q);
         try{
             query.execute(q);
@@ -85,25 +82,27 @@ public class BaseDatos {
         }
     }
 
-    public String[][] getClasesPorDia(String fecha){
-        String q = "SELECT Nombre, Hora "+
-                "FROM Clase "+
-                "WHERE Dia '"+fecha+"' ";
-        String[][] tabla = new String[7][2];
-        int i = 0;
-
+    public ResultSet getClasesPorDia(String fecha){
+        String q = "SELECT Nombre, Hora FROM Clase WHERE Dia = '"+fecha+"'";
         try{
-            ResultSet rs = query.executeQuery(q);
-            while(rs.next()){
-                tabla[i][0] = rs.getString("Hora");
-                tabla[i][1] = rs.getString("Nombre");
-                i++;
-            }
-        }
-        catch (Exception e) {
+            return query.executeQuery(q);
+        } catch(Exception e){
             System.out.println(e);
         }
-        return tabla;
+        return null;
     }
 
+    public ResultSet getCompeticionPorFecha(String fecha){
+        String q = "SELECT * FROM Competicion " +
+                "WHERE FechaInicio <= '"+fecha+"' AND FechaFin >= '"+fecha+"'";
+
+        System.out.println(q);
+
+        try{
+            return query.executeQuery(q);
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
 }

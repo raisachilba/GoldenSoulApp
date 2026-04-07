@@ -14,12 +14,14 @@ public class Fonts {
     }
 
     public void setFonts(PApplet p5){
-        this.fonts = new PFont[5];
+        this.fonts = new PFont[6];
         this.fonts[0] = p5.createFont("data/Fonts/Modum.ttf", midaTitol);
         this.fonts[1] = p5.createFont("data/Fonts/GingerBrand.ttf", midaTitol);
         this.fonts[2] = p5.createFont("data/Fonts/MonoSpatial.ttf", midaTitol);
         this.fonts[3] = p5.createFont("data/Fonts/Modum.ttf", midaSubtitol);
         this.fonts[4] = p5.createFont("data/Fonts/GingerBrand.ttf", midaSubtitol);
+        this.fonts[5] = p5.createFont("data/Fonts/GingerBrand.ttf", midaComp);
+
     }
 
     public int getNumFonts() {return this.fonts.length; }
@@ -29,6 +31,8 @@ public class Fonts {
     public PFont getFontTitulosPantallaBotones() {return this.fonts[2];}
     public PFont getFontCards() {return this.fonts[3];}
     public PFont getFontHoras() {return this.fonts[4];}
+    public PFont getFontComp() {return this.fonts[5];}
+
     public PFont getFontAt(int i){return this.fonts[i];}
 
     public void displayFonts(PApplet p5, float x, float y, float h){
