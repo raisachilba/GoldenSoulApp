@@ -291,18 +291,18 @@ public class GoldenSoulApp extends PApplet {
             if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
-            gui.videoExplica[0].clickMouseOnCardItems(this);
-            gui.videoExplica[1].clickMouseOnCardItems(this);
-            gui.videoExplica[2].clickMouseOnCardItems(this);
+            gui.videoExplica[3].clickMouseOnCardItems(this);
+            gui.videoExplica[4].clickMouseOnCardItems(this);
+            gui.videoExplica[5].clickMouseOnCardItems(this);
         }
 
         else if (gui.pantallaActual == GUI.PANTALLA.COORDINACION) {
             if (gui.b3.mouseOverButton(this) && gui.b3.isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }
-            gui.videoExplica[0].clickMouseOnCardItems(this);
-            gui.videoExplica[1].clickMouseOnCardItems(this);
-            gui.videoExplica[2].clickMouseOnCardItems(this);
+            gui.videoExplica[6].clickMouseOnCardItems(this);
+            gui.videoExplica[7].clickMouseOnCardItems(this);
+            gui.videoExplica[8].clickMouseOnCardItems(this);
         }
 
         else if (gui.pantallaActual == GUI.PANTALLA.TODO) {

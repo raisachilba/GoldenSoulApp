@@ -1,6 +1,7 @@
 package GSApp.Data;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class BaseDatos {
 
@@ -104,5 +105,22 @@ public class BaseDatos {
             System.out.println(e);
         }
         return null;
+    }
+
+    public ArrayList<Video> getVideosPorTipo(String tipo) {
+        ArrayList<Video> lista = new ArrayList<>();
+        String q = "SELECT Titulo, Descripcion, URL FROM Video WHERE TipoVideo_Nombre = '" + tipo + "' LIMIT 3";
+        try {
+            ResultSet rs = query.executeQuery(q);
+            while (rs.next()) {
+                String titulo = rs.getString("Titulo");
+                String descripcion = rs.getString("Descripcion");
+                String url = rs.getString("URL");
+                lista.add(new Video(titulo, descripcion, url, tipo));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return lista;
     }
 }

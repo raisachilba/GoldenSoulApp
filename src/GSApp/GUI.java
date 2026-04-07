@@ -3,6 +3,7 @@ package GSApp;
 import GSApp.Data.BaseDatos;
 import GSApp.Data.Competicion;
 import GSApp.Data.DateConversion;
+import GSApp.Data.Video;
 import GSApp.Elementos.*;
 import GSApp.Estetica.Colors;
 import GSApp.Estetica.Fonts;
@@ -11,6 +12,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import static GSApp.Estetica.Medidas.*;
 
@@ -45,22 +47,22 @@ public class GUI {
 
     CalendarPlus calendario;
 
-    Card[] videoExplica;
+    Card[] videoExplica = new Card[9];
 
     PagedTable tablaToDo;
     String[] headers = {"Nombre","Baile", "Objetivo", "Explicación", "Estado"};
     float[] colWidth = {20, 15, 20, 35, 10};
     String[][] info = {
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Samba", "Expresivo", "...", "Done"},
-            {"Maria Riera", "Jive", "Tecnico", "...", "Done"},
-            {"Diana Blue", "Rumba", "Expresivo", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
-            {"Pere Soler", "Rumba", "Personal", "...", "Done"},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
+            {"", "", "", "", ""},
     };
     Table clases;
     String[] headerClase = {"Hora", "Nombre"};
@@ -76,23 +78,14 @@ public class GUI {
     };
 
     Competicion compActual;
-    /*String nombreComp = "";
-    String fechaInicio = "";
-    String fechaFin = "";
-    String federacion = "";
-    String organizador = "";
-    String lugar = "";
-    String ubicacion = "";
-    String finRegistro = "";
-    boolean hayCompeticion = false;
-
-     */
 
     public PANTALLA pantallaActual;
 
     public GUI(PApplet p5) {
         bd = new BaseDatos("admin", "12345", "GoldenSoulApp");
         bd.connect();
+
+        dibujaVideoExplica(p5, bd);
 
         c = new Colors(p5);
 
@@ -108,8 +101,6 @@ public class GUI {
         calendario = new CalendarPlus(p5, 800, 350, 600, 600, c);
         setPagedTable(p5);
         setTablaClases(p5);
-
-        this.dibujaVideoExplica(p5);
 
         medida = new Medidas();
         fontsApp = new Fonts(p5);
@@ -365,12 +356,15 @@ public class GUI {
 
         b3.display(p5);
 
-        dibujaVideoExplica(p5);
-
+        for(int i=0; i<3;i++){
+            if(videoExplica[i]!=null){
+                videoExplica[i].display(p5);
+            }
+        }
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
-            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones());
             p5.text("TÉCNICA", 800, 130);
         p5.popStyle();
     }
@@ -382,7 +376,11 @@ public class GUI {
 
         b3.display(p5);
 
-        dibujaVideoExplica(p5);
+        for(int i = 3; i < 6; i++){
+            if(videoExplica[i] != null){
+                videoExplica[i].display(p5);
+            }
+        }
 
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
@@ -399,12 +397,16 @@ public class GUI {
 
         b3.display(p5);
 
-        dibujaVideoExplica(p5);
+        for(int i = 6; i < 9; i++){
+            if(videoExplica[i] != null){
+                videoExplica[i].display(p5);
+            }
+        }
 
         p5.pushStyle();
             p5.textAlign(p5.CENTER);
             p5.textSize(medida.midaTitol); p5.fill(c.getGoldColor(p5, 1));
-            p5.textFont(fontsApp.getFontTitulosPantallaBotones()); //ÚS FONTS
+            p5.textFont(fontsApp.getFontTitulosPantallaBotones());
             p5.text("COORDINACIÓN", 800, 130);
         p5.popStyle();
     }
@@ -495,16 +497,34 @@ public class GUI {
         textFields[8] = new TextField(p5, p5.width/2+170, 800, 400, 50);
     }
 
-    public void dibujaVideoExplica(PApplet p5){
+    public void dibujaVideoExplica(PApplet p5, BaseDatos bd){
+        ArrayList<Video> tecnica = bd.getVideosPorTipo("tecnica");
+        ArrayList<Video> elasticidad = bd.getVideosPorTipo("elasticidad");
+        ArrayList<Video> coordinacion = bd.getVideosPorTipo("coordinacion");
 
-        p5.pushStyle();
-            videoExplica = new Card[3];
-            videoExplica[0] = new Card(p5, "VÍDEO 1", 100, 320, 400, 500);
-            videoExplica[1] = new Card(p5, "VÍDEO 2", 550, 320, 400, 500);
-            videoExplica[2] = new Card(p5, "VÍDEO 3", 1000, 320, 400, 500);
+        float w = 400, h = 500;
+        float y = 320; // misma altura para todas las pantallas
 
-            videoExplica[0].display(p5); videoExplica[1].display(p5); videoExplica[2].display(p5);
-        p5.popStyle();
+        // Técnica
+        for(int i = 0; i < tecnica.size() && i < 3; i++){
+            float x = 100 + i*(w + 50);
+            Video v = tecnica.get(i);
+            videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h);
+        }
+
+        // Elasticidad
+        for(int i = 0; i < elasticidad.size() && i < 3; i++){
+            float x = 100 + i*(w + 50);
+            Video v = elasticidad.get(i);
+            videoExplica[i + 3] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h);
+        }
+
+        // Coordinación
+        for(int i = 0; i < coordinacion.size() && i < 3; i++){
+            float x = 100 + i*(w + 50);
+            Video v = coordinacion.get(i);
+            videoExplica[i + 6] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h);
+        }
     }
 
     public void setPagedTable(PApplet p5){
