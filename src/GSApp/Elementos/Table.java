@@ -1,5 +1,6 @@
 package GSApp.Elementos;
 
+import GSApp.Estetica.Colors;
 import processing.core.PApplet;
 
 public class Table {
@@ -7,13 +8,15 @@ public class Table {
     String[] tableHeaders;   // Títols de les columnes
     String[][] tableData;    // Dades de la taula
     float[] columnWidths;    // Amplades de les columnes
+    Colors c;
 
     int numCols, numRows;  // Número de files i columnes
 
     // Constructor
-    public Table(int nr, int nc){
+    public Table(PApplet p5, int nr, int nc){
         this.numRows = nr;
         this.numCols = nc;
+        c = new Colors(p5);
     }
 
     // Setters
@@ -41,7 +44,7 @@ public class Table {
         p5.rect(x, y, w, h);
 
         float rowHeight = h / numRows;
-        p5.fill(200, 100, 100); p5.stroke(0); p5.strokeWeight(3);
+        p5.fill(c.getRedColor(p5, 2)); p5.stroke(0); p5.strokeWeight(3);
         p5.rect(x, y, w, rowHeight);
 
         // Dibuixa files

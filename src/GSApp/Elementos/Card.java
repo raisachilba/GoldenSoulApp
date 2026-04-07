@@ -34,6 +34,7 @@ public class Card {
 
         fontsCard = new Fonts(p5);
         colorsCard = new Colors(p5);
+        //System.out.println("Creando card: " + titol + " | img: " + img);
     }
 
     public void display(PApplet p5){
@@ -42,12 +43,13 @@ public class Card {
                 p5.fill(colorsCard.getRedColor(p5,3));
                 p5.rect(x, y, w, h, 5);
             p5.popStyle();
-            if (img == null){
-                p5.rect(x+5, y+5, w-10, h/2);
-            }
-            else{
-                p5.image(img, x+5, y+5, w-10, h/4);
-            }
+        if (img != null){
+            float imgheight = h/2;
+            p5.image(img, x+5, y+5, w-10, imgheight);
+        } else {
+            System.out.println("Imagen no cargada en card: " + titol);
+            p5.rect(x+5, y+5, w-10, h/2);
+        }
 
             p5.fill(0); p5.textFont(fontsCard.getFontCards());
 
@@ -127,4 +129,3 @@ public class Card {
         }
     }
 }
-

@@ -86,6 +86,18 @@ public class GUI {
         bd = new BaseDatos("admin", "12345", "GoldenSoulApp");
         bd.connect();
 
+        p5.scale(0, 2f);
+        tecnica1 = p5.loadImage("data/Fotos/Tecnica1.png");
+        //System.out.println(tecnica1);
+        tecnica2 = p5.loadImage("data/Fotos/Tecnica2.png");
+        tecnica3 = p5.loadImage("data/Fotos/Tecnica3.png");
+        elasticidad1 = p5.loadImage("data/Fotos/Elasticidad1.png");
+        elasticidad2 = p5.loadImage("data/Fotos/Elasticidad2.png");
+        elasticidad3 = p5.loadImage("data/Fotos/Elasticidad3.png");
+        coordinacion1 = p5.loadImage("data/Fotos/Coordinacion1.png");
+        coordinacion2 = p5.loadImage("data/Fotos/Coordinacion2.png");
+        coordinacion3 = p5.loadImage("data/Fotos/Coordinacion3.png");
+
         dibujaVideoExplica(p5, bd);
 
         c = new Colors(p5);
@@ -115,6 +127,15 @@ public class GUI {
         fotoSignIn = p5.loadImage("data/Fotos/Ballroom1.png");
         fotoBanner = p5.loadImage("data/Fotos/BallroomExtended.png");
         tecnica1 = p5.loadImage("data/Fotos/Tecnica1.png");
+        System.out.println(tecnica1);
+        tecnica2 = p5.loadImage("data/Fotos/Tecnica2.png");
+        tecnica3 = p5.loadImage("data/Fotos/Tecnica3.png");
+        elasticidad1 = p5.loadImage("data/Fotos/Elasticidad1.png");
+        elasticidad2 = p5.loadImage("data/Fotos/Elasticidad2.png");
+        elasticidad3 = p5.loadImage("data/Fotos/Elasticidad3.png");
+        coordinacion1 = p5.loadImage("data/Fotos/Coordinacion1.png");
+        coordinacion2 = p5.loadImage("data/Fotos/Coordinacion2.png");
+        coordinacion3 = p5.loadImage("data/Fotos/Coordinacion3.png");
 
         this.setTextField(p5);
         this.setTxtFieldInfoClase(p5);
@@ -505,17 +526,20 @@ public class GUI {
         ArrayList<Video> coordinacion = bd.getVideosPorTipo("coordinacion");
 
         float w = 400, h = 500;
-        float y = 320; // misma altura para todas las pantallas
+        float y = 320;
 
         // Técnica
         for(int i = 0; i < tecnica.size() && i < 3; i++){
             float x = 100 + i*(w + 50);
             Video v = tecnica.get(i);
-            if(i==1) {
+            if(i==0) {
                 videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, tecnica1);
             }
-            else{
-                videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, null);
+            else if(i==1) {
+                videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, tecnica2);
+            }
+            else if(i==2) {
+                videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, tecnica3);
             }
         }
 
@@ -523,26 +547,42 @@ public class GUI {
         for(int i = 0; i < elasticidad.size() && i < 3; i++){
             float x = 100 + i*(w + 50);
             Video v = elasticidad.get(i);
-            videoExplica[i + 3] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, null);
+            if(i==0){
+                videoExplica[i + 3] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, elasticidad1);
+            }
+            else if(i==1){
+                videoExplica[i + 3] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, elasticidad2);
+            }
+            else if(i==2){
+                videoExplica[i + 3] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, elasticidad3);
+            }
         }
 
         // Coordinación
         for(int i = 0; i < coordinacion.size() && i < 3; i++){
             float x = 100 + i*(w + 50);
             Video v = coordinacion.get(i);
-            videoExplica[i + 6] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, null);
+            if(i==0){
+                videoExplica[i + 6] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, coordinacion1);
+            }
+            else if(i==1){
+                videoExplica[i + 6] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, coordinacion2);
+            }
+            else if(i==2){
+                videoExplica[i + 6] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, coordinacion3);
+            }
         }
     }
 
     public void setPagedTable(PApplet p5){
-        tablaToDo = new PagedTable(4, 5);
+        tablaToDo = new PagedTable(p5,4, 5);
         tablaToDo.setHeaders(headers);
         tablaToDo.setColumnWidths(colWidth);
         tablaToDo.setData(info);
     }
 
     public void setTablaClases(PApplet p5){
-        clases = new Table(8, 2);
+        clases = new Table(p5,8, 2);
         clases.setColumnWidths(colWidthClase);
         clases.setHeaders(headerClase);
         clases.setData(infoClase);

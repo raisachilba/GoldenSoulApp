@@ -1,5 +1,6 @@
 package GSApp.Elementos;
 
+import GSApp.Estetica.Colors;
 import processing.core.PApplet;
 
 public class PagedTable {
@@ -13,11 +14,14 @@ public class PagedTable {
     int numPage;
     int numTotalPages;
 
+    Colors c;
+
     // Constructor
-    public PagedTable(int nr, int nc){
+    public PagedTable(PApplet p5, int nr, int nc){
         this.numRows = nr;
         this.numCols = nc;
         this.numPage = 0;
+        c = new Colors(p5);
     }
 
     // Setters
@@ -65,7 +69,7 @@ public class PagedTable {
         p5.rect(x, y, w, h);
 
         float rowHeight = h / numRows;
-        p5.fill(200, 100, 100); p5.stroke(0); p5.strokeWeight(3);
+        p5.fill(c.getRedColor(p5, 2)); p5.stroke(0); p5.strokeWeight(3);
         p5.rect(x, y, w, rowHeight);
 
         // Dibuixa files
