@@ -20,7 +20,7 @@ public class Card {
     Fonts fontsCard;
     Colors colorsCard;
 
-    public Card(PApplet p5, String titol, String descripcion, String url, float x, float y, float w, float h){
+    public Card(PApplet p5, String titol, String descripcion, String url, float x, float y, float w, float h, PImage img){
         this.titol = titol;
         this.descripcion = descripcion;
         this.url = url;
@@ -28,6 +28,7 @@ public class Card {
         this.y = y;
         this.w = w;
         this.h = h;
+        this.img = img;
         this.boto = new Button(p5, "VER", (int)x + 20, (int)(y + 450), (int)w-40, 40);
 
 

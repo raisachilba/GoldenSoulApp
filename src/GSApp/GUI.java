@@ -27,7 +27,8 @@ public class GUI {
     Button b1, b2, b3, b4, bPrev, bNext, b5;
     Button[] bMenu;
 
-    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner;
+    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner,
+            tecnica1, tecnica2, tecnica3, elasticidad1, elasticidad2, elasticidad3, coordinacion1, coordinacion2, coordinacion3;
 
     TextList tList;
     String[] provincias = {"Alicante", "Asturias", "Barcelona", "Cádiz", "Girona", "Granada",
@@ -113,6 +114,7 @@ public class GUI {
         fotoLogIn = p5.loadImage("data/Fotos/LatinoJive.png");
         fotoSignIn = p5.loadImage("data/Fotos/Ballroom1.png");
         fotoBanner = p5.loadImage("data/Fotos/BallroomExtended.png");
+        tecnica1 = p5.loadImage("data/Fotos/Tecnica1.png");
 
         this.setTextField(p5);
         this.setTxtFieldInfoClase(p5);
@@ -509,21 +511,26 @@ public class GUI {
         for(int i = 0; i < tecnica.size() && i < 3; i++){
             float x = 100 + i*(w + 50);
             Video v = tecnica.get(i);
-            videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h);
+            if(i==1) {
+                videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, tecnica1);
+            }
+            else{
+                videoExplica[i] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, null);
+            }
         }
 
         // Elasticidad
         for(int i = 0; i < elasticidad.size() && i < 3; i++){
             float x = 100 + i*(w + 50);
             Video v = elasticidad.get(i);
-            videoExplica[i + 3] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h);
+            videoExplica[i + 3] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, null);
         }
 
         // Coordinación
         for(int i = 0; i < coordinacion.size() && i < 3; i++){
             float x = 100 + i*(w + 50);
             Video v = coordinacion.get(i);
-            videoExplica[i + 6] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h);
+            videoExplica[i + 6] = new Card(p5, v.titulo, v.descripcion, v.url, x, y, w, h, null);
         }
     }
 
