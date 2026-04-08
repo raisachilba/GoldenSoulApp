@@ -229,6 +229,7 @@ public class GoldenSoulApp extends PApplet {
             }
             else if(gui.b5.mouseOverButton(this) && gui.b5.isEnabled()){
                 String nombre = gui.txtFieldInfoClase[0].getText();
+                String tipo = gui.txtFieldInfoClase[1].getText();
                 String fechaOg = gui.calendario.getSelectedDate();
                 String fechaSQL = DateConversion.formataFechaEng(fechaOg);
 
@@ -246,7 +247,7 @@ public class GoldenSoulApp extends PApplet {
                     println("Selecciona una hora");
                     return;
                 }
-                db.reservaClase(nombre, fechaSQL, hora);
+                db.reservaClase(nombre, fechaSQL, hora, tipo);
 
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
             }

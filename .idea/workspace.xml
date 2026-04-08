@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Producto final" />
+    <list default="true" id="3ed80f8a-dee2-4793-844b-b6d57417e7be" name="Changes" comment="Producto final">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GSApp/Data/BaseDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/Data/BaseDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GSApp/GoldenSoulApp.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -502,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775647486086</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Producto final">
+      <option name="closed" value="true" />
+      <created>1775648003314</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1775648003314</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

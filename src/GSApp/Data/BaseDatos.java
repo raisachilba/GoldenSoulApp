@@ -110,9 +110,9 @@ public class BaseDatos {
         return false;
     }
 
-    public void reservaClase(String n, String d, String h){
-        String q = "INSERT INTO Clase (Nombre, Dia, Hora) " +
-                "VALUES ('"+n+"', '"+d+"', '"+h+"')";
+    public void reservaClase(String n, String d, String h, String t){
+        String q = "INSERT INTO Clase (Nombre, Dia, Hora, Tipo) " +
+                "VALUES ('"+n+"', '"+d+"', '"+h+"', '"+t+"')";
         System.out.println(q);
         try{
             query.execute(q);
