@@ -76,7 +76,7 @@ public class GUI {
 
         p5.scale(0, 2f);
         tecnica1 = p5.loadImage("data/Fotos/Tecnica1.png");
-        //System.out.println(tecnica1);
+        System.out.println(tecnica1);
         tecnica2 = p5.loadImage("data/Fotos/Tecnica2.png");
         tecnica3 = p5.loadImage("data/Fotos/Tecnica3.png");
         elasticidad1 = p5.loadImage("data/Fotos/Elasticidad1.png");
@@ -106,7 +106,6 @@ public class GUI {
         medida = new Medidas();
         fontsApp = new Fonts(p5);
 
-        perfil = p5.loadImage("data/Icones/ImatgePerfil-2.png");
         logoLogIn = p5.loadImage("data/Logo/LogoLogInNegro.png");
         logoPrincipal = p5.loadImage("data/Logo/LogoPantallaPrincipalN.png");
         logoBotonesEntradas = p5.loadImage("data/Logo/LogoCompeticionesGranate.png");
@@ -114,16 +113,6 @@ public class GUI {
         fotoLogIn = p5.loadImage("data/Fotos/LatinoJive.png");
         fotoSignIn = p5.loadImage("data/Fotos/Ballroom1.png");
         fotoBanner = p5.loadImage("data/Fotos/BallroomExtended.png");
-        tecnica1 = p5.loadImage("data/Fotos/Tecnica1.png");
-        System.out.println(tecnica1);
-        tecnica2 = p5.loadImage("data/Fotos/Tecnica2.png");
-        tecnica3 = p5.loadImage("data/Fotos/Tecnica3.png");
-        elasticidad1 = p5.loadImage("data/Fotos/Elasticidad1.png");
-        elasticidad2 = p5.loadImage("data/Fotos/Elasticidad2.png");
-        elasticidad3 = p5.loadImage("data/Fotos/Elasticidad3.png");
-        coordinacion1 = p5.loadImage("data/Fotos/Coordinacion1.png");
-        coordinacion2 = p5.loadImage("data/Fotos/Coordinacion2.png");
-        coordinacion3 = p5.loadImage("data/Fotos/Coordinacion3.png");
 
         this.setTextField(p5);
         this.setTxtFieldInfoClase(p5);
