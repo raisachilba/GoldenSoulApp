@@ -53,18 +53,7 @@ public class GUI {
     PagedTable tablaToDo;
     String[] headers = {"Nombre","Baile", "Objetivo", "Explicación", "Estado"};
     float[] colWidth = {20, 15, 20, 35, 10};
-    String[][] info = {
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-            {"", "", "", "", ""},
-    };
+
     Table clases;
     String[] headerClase = {"Hora", "Nombre"};
     float[] colWidthClase = {40, 60};
@@ -578,7 +567,8 @@ public class GUI {
         tablaToDo = new PagedTable(p5,4, 5);
         tablaToDo.setHeaders(headers);
         tablaToDo.setColumnWidths(colWidth);
-        tablaToDo.setData(info);
+        String[][] datos = bd.getToDos();
+        tablaToDo.setData(datos);
     }
 
     public void setTablaClases(PApplet p5){

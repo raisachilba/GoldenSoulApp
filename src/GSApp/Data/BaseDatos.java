@@ -10,6 +10,9 @@ public class BaseDatos {
 
     String usuario, contrasena, baseDatosNombre;
 
+    String usuarioActual = "";
+    boolean esAdmin = false;
+
     boolean conectado;
 
     public BaseDatos(String usuario, String contrasena, String baseDatosNombre){
@@ -58,6 +61,24 @@ public class BaseDatos {
             System.out.println(e);
         }
         return false;
+    }
+
+    public void guardarSesion(String usuario){
+
+        System.out.println(">>> guardarSesion RECIBIDO: " + usuario);
+
+        this.usuarioActual = usuario;
+
+        System.out.println(">>> usuarioActual GUARDADO: " + this.usuarioActual);
+
+        if(usuario.equals("admin")){
+            esAdmin = true;
+        } else {
+            esAdmin = false;
+        }
+
+        System.out.println("Usuario actual: " + usuarioActual);
+        System.out.println("Es admin: " + esAdmin);
     }
 
     public void insertarUsuario(String u, String n, String a, String f, String pais, String prov, String d, String c){
@@ -122,5 +143,58 @@ public class BaseDatos {
             System.out.println(e);
         }
         return lista;
+    }
+
+    public String[][] getToDos() {
+
+        ArrayList<String[]> lista = new ArrayList<>();
+
+        String q;
+
+        if(esAdmin){
+            q = "SELECT Usuario_Usuario, Baile, TipoToDo_Nombre, Explicacion, Estado FROM ToDo";
+        } else {
+            q = "SELECT Usuario_Usuario, Baile, TipoToDo_Nombre, Explicacion, Estado FROM ToDo WHERE Usuario_Usuario = '"+usuarioActual+"' ";
+        }
+
+        System.out.println("Usuario actual: " + usuarioActual);
+        System.out.println(q);
+        try{
+            ResultSet rs = query.executeQuery(q);
+
+            int count = 0;
+
+            while(rs.next()){
+                count++;
+
+                String[] fila = new String[5];
+
+                fila[0] = rs.getString("Usuario_Usuario");   // Nombre en Java
+                fila[1] = rs.getString("Baile");
+                fila[2] = rs.getString("TipoToDo_Nombre");   // Objetivo
+                fila[3] = rs.getString("Explicacion");
+
+                int estado = rs.getInt("Estado");
+                if(estado == 1){
+                    fila[4] = "done";
+                } else {
+                    fila[4] = "pending";
+                }
+
+                lista.add(fila);
+            }
+            System.out.println("Filas encontradas: " + count);
+
+        } catch(Exception e){
+            System.out.println(e);
+        }
+
+        String[][] datos = new String[lista.size()][5];
+
+        for(int i=0; i<lista.size(); i++){
+            datos[i] = lista.get(i);
+        }
+
+        return datos;
     }
 }

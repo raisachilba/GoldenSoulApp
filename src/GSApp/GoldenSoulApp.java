@@ -67,7 +67,7 @@ public class GoldenSoulApp extends PApplet {
                 pushStyle();
                 textSize(15);
                 fill(c.getRedColor(this, 1));
-                text("Usuario o contrseña incorrectos", width / 2 + 170, 575);
+                text("Usuario o contraseña incorrectos", width / 2 + 170, 575);
                 popStyle();
             }
         }
@@ -113,6 +113,10 @@ public class GoldenSoulApp extends PApplet {
                 String nom = gui.textFields[0].getText();
                 String password = gui.textFields[1].getText();
                 if(db.loginCorrecte(nom, password)){
+                    db.guardarSesion(nom);
+                    System.out.println("LOGIN CLICKED");
+                    System.out.println("USER: " + nom);
+                    System.out.println("PASS: " + password);
                     gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
                 } else {
                     println("LOGIN WRONG");
@@ -167,6 +171,8 @@ public class GoldenSoulApp extends PApplet {
             }
             else if (gui.bMenu[4].mouseOverButton(this) && gui.bMenu[4].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.TODO;
+
+                gui.tablaToDo.setData(gui.bd.getToDos());
             }
             else if (gui.bMenu[5].mouseOverButton(this) && gui.bMenu[5].isEnabled()) {
                 gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
