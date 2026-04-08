@@ -93,6 +93,23 @@ public class BaseDatos {
         }
     }
 
+    public boolean usuarioExiste(String usuario){
+
+        String q = "SELECT COUNT(*) AS n FROM Usuario WHERE Usuario = '"+usuario+"'";
+
+        try{
+            ResultSet rs = query.executeQuery(q);
+            rs.next();
+
+            return rs.getInt("n") > 0;
+
+        } catch(Exception e){
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
     public void reservaClase(String n, String d, String h){
         String q = "INSERT INTO Clase (Nombre, Dia, Hora) " +
                 "VALUES ('"+n+"', '"+d+"', '"+h+"')";
@@ -158,6 +175,8 @@ public class BaseDatos {
         }
 
         System.out.println("Usuario actual: " + usuarioActual);
+        System.out.println("ADMIN: " + esAdmin);
+
         System.out.println(q);
         try{
             ResultSet rs = query.executeQuery(q);

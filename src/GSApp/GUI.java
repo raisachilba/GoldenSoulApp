@@ -71,9 +71,8 @@ public class GUI {
 
     public PANTALLA pantallaActual;
 
-    public GUI(PApplet p5) {
-        bd = new BaseDatos("admin", "12345", "GoldenSoulApp");
-        bd.connect();
+    public GUI(PApplet p5, BaseDatos bd) {
+        this.bd = bd;
 
         p5.scale(0, 2f);
         tecnica1 = p5.loadImage("data/Fotos/Tecnica1.png");

@@ -13,6 +13,7 @@ public class GoldenSoulApp extends PApplet {
     GUI gui;
     BaseDatos db;
     boolean loginWrong = false;
+    boolean signupError = false;
 
     public static void main(String[] args) {
         PApplet.main("GSApp.GoldenSoulApp");
@@ -27,7 +28,7 @@ public class GoldenSoulApp extends PApplet {
         fontsApp = new Fonts(this);
         db = new BaseDatos("admin", "12345", "GoldenSoulApp");
         db.connect();
-        gui = new GUI(this);
+        gui = new GUI(this, db);
     }
 
     public void draw(){
@@ -65,9 +66,18 @@ public class GoldenSoulApp extends PApplet {
         if(gui.pantallaActual == GUI.PANTALLA.LOGIN) {
             if (loginWrong) {
                 pushStyle();
+                    textSize(15);
+                    fill(c.getRedColor(this, 1));
+                    text("Usuario o contraseña incorrectos", width / 2 + 170, 575);
+                popStyle();
+            }
+        }
+        else if(gui.pantallaActual == GUI.PANTALLA.SIGNUP){
+            if(signupError){
+                pushStyle();
                 textSize(15);
                 fill(c.getRedColor(this, 1));
-                text("Usuario o contraseña incorrectos", width / 2 + 170, 575);
+                text("Este nombre de usuario no está disponible", width / 2 + 170, 230);
                 popStyle();
             }
         }
@@ -77,33 +87,42 @@ public class GoldenSoulApp extends PApplet {
 
     public void keyPressed(){
         if(gui.pantallaActual == GUI.PANTALLA.LOGIN) {
-            gui.textFields[0].keyTyped(key);
-            gui.textFields[1].keyTyped(key);
-
             gui.textFields[0].keyPressed(keyCode);
             gui.textFields[1].keyPressed(keyCode);
         }
         else if(gui.pantallaActual == GUI.PANTALLA.SIGNUP) {
-            gui.textFields[2].keyTyped(key); gui.textFields[3].keyTyped(key);
-            gui.textFields[4].keyTyped(key); gui.textFields[5].keyTyped(key);
-            gui.textFields[6].keyTyped(key); gui.textFields[7].keyTyped(key);
-            gui.textFields[8].keyTyped(key);
-
             gui.textFields[2].keyPressed(keyCode); gui.textFields[3].keyPressed(keyCode);
             gui.textFields[4].keyPressed(keyCode); gui.textFields[5].keyPressed(keyCode);
             gui.textFields[6].keyPressed(keyCode); gui.textFields[7].keyPressed(keyCode);
             gui.textFields[8].keyPressed(keyCode);
 
             if(gui.tList.getTextField().mouseOverTextField(this)){
-                gui.tList.getTextField().keyPressed(key, keyCode);
+                gui.tList.getTextField().keyPressed(keyCode);
                 gui.tList.update(this);
             }
         }
         else if(gui.pantallaActual == GUI.PANTALLA.HORAS){
-            gui.txtFieldInfoClase[0].keyTyped(key); gui.txtFieldInfoClase[1].keyTyped(key);
             gui.txtFieldInfoClase[0].keyPressed(keyCode); gui.txtFieldInfoClase[1].keyPressed(keyCode);
         }
 
+    }
+
+    public void keyTyped() {
+        if (gui.pantallaActual == GUI.PANTALLA.LOGIN) {
+            gui.textFields[0].keyTyped(key);
+            gui.textFields[1].keyTyped(key);
+        } else if (gui.pantallaActual == GUI.PANTALLA.SIGNUP) {
+            gui.textFields[2].keyTyped(key);
+            gui.textFields[3].keyTyped(key);
+            gui.textFields[4].keyTyped(key);
+            gui.textFields[5].keyTyped(key);
+            gui.textFields[6].keyTyped(key);
+            gui.textFields[7].keyTyped(key);
+            gui.textFields[8].keyTyped(key);
+        } else if (gui.pantallaActual == GUI.PANTALLA.HORAS) {
+            gui.txtFieldInfoClase[0].keyTyped(key);
+            gui.txtFieldInfoClase[1].keyTyped(key);
+        }
     }
 
     public void mousePressed() {
@@ -140,8 +159,14 @@ public class GoldenSoulApp extends PApplet {
                 String domicilio = gui.textFields[7].getText();
                 String password = gui.textFields[8].getText();
 
-                db.insertarUsuario(usuario, nombre, apellido, fecha, pais, provincia, domicilio, password);
-                gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+                if(db.usuarioExiste(usuario)){
+                    signupError = true;
+                } else {
+                    db.insertarUsuario(usuario, nombre, apellido, fecha, pais, provincia, domicilio, password);
+                    signupError = false;
+                    gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
+                }
+                //db.insertarUsuario(usuario, nombre, apellido, fecha, pais, provincia, domicilio, password);
             }
 
             gui.textFields[2].isPressed(this);

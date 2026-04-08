@@ -49,26 +49,6 @@ public class TextField extends PApplet{
         p5.popStyle();
     }
 
-    // Afegeix i/o lleva el text que es tecleja
-    public void keyPressed(char key, int keyCode) {
-        if (selected) {
-            if (keyCode == (int)BACKSPACE) {
-                removeText();
-            } else if (keyCode == 32) {
-                addText(' '); // SPACE
-            } else {
-
-                boolean isKeyCapitalLetter = (key >= 'A' && key <= 'Z');
-                boolean isKeySmallLetter = (key >= 'a' && key <= 'z');
-                boolean isKeyNumber = (key >= '0' && key <= '9');
-
-                if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber) {
-                    addText(key);
-                }
-            }
-        }
-    }
-
     // Afegeix la lletra c al final del text
     public void addText(char c) {
         if (this.text.length() + 1 < w) {
@@ -104,6 +84,25 @@ public class TextField extends PApplet{
     }
 
     // Gestiona tecles especials
+    public void keyPressed(char key, int keyCode) {
+        if (selected) {
+            if (keyCode == (int)BACKSPACE) {
+                removeText();
+            } else if (keyCode == 32) {
+                addText(' '); // SPACE
+            } else {
+
+                boolean isKeyCapitalLetter = (key >= 'A' && key <= 'Z');
+                boolean isKeySmallLetter = (key >= 'a' && key <= 'z');
+                boolean isKeyNumber = (key >= '0' && key <= '9');
+
+                if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber) {
+                    addText(key);
+                }
+            }
+        }
+    }
+
     public void keyPressed(int keyCode) {
         if (!selected) return;
 

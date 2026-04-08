@@ -32,11 +32,14 @@ public class PagedTable {
 
     public void setData(String[][] d){
         this.tableData = d;
-        if(d.length % (this.numRows-1)==0){
-            this.numTotalPages = (d.length / (this.numRows-1)) -1;
-        }
-        else {
-            this.numTotalPages = (d.length / (this.numRows-1)) ;
+        this.numTotalPages = (int)Math.ceil(
+                (double) d.length / (this.numRows - 1)
+        ) - 1;
+        if (d == null || d.length == 0) {
+            this.tableData = new String[0][numCols];
+            this.numTotalPages = 0;
+            this.numPage = 0;
+            return;
         }
     }
 
@@ -98,7 +101,15 @@ public class PagedTable {
                 else{
                     int k = (numRows-1)*numPage + (r-1);
                     if(k<tableData.length){
-                        p5.text(tableData[k][c], xCol + 10, y + (r+1)*rowHeight - 10);
+                        p5.pushStyle();
+                            float cellX = xCol + 10;
+                            float cellY = y + r * rowHeight;
+                            float cellW = (float) (w * columnWidths[c] / 100.0 - 20);
+                            float cellH = rowHeight;
+
+                            p5.textAlign(PApplet.LEFT, PApplet.TOP);
+                            p5.text(tableData[k][c], cellX, cellY + 5, cellW, cellH);
+                        p5.popStyle();
                     }
                 }
                 xCol += w*columnWidths[c]/100.0;
