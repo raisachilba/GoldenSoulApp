@@ -27,7 +27,7 @@ public class GUI {
     Button b1, b2, b3, b4, bPrev, bNext, b5;
     Button[] bMenu;
 
-    PImage perfil, logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner,
+    PImage logoLogIn, logoPrincipal, logoBotonesEntradas, fotoLogIn, fotoSignIn, fotoBanner,
             tecnica1, tecnica2, tecnica3, elasticidad1, elasticidad2, elasticidad3, coordinacion1, coordinacion2, coordinacion3;
 
     TextList tList;

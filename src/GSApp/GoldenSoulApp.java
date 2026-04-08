@@ -119,6 +119,12 @@ public class GoldenSoulApp extends PApplet {
             gui.textFields[6].keyTyped(key);
             gui.textFields[7].keyTyped(key);
             gui.textFields[8].keyTyped(key);
+
+            if(gui.tList.getTextField().mouseOverTextField(this)){
+                gui.tList.getTextField().keyTyped(key);
+                gui.tList.update(this);
+            }
+
         } else if (gui.pantallaActual == GUI.PANTALLA.HORAS) {
             gui.txtFieldInfoClase[0].keyTyped(key);
             gui.txtFieldInfoClase[1].keyTyped(key);
@@ -166,7 +172,6 @@ public class GoldenSoulApp extends PApplet {
                     signupError = false;
                     gui.pantallaActual = GUI.PANTALLA.PRINCIPAL;
                 }
-                //db.insertarUsuario(usuario, nombre, apellido, fecha, pais, provincia, domicilio, password);
             }
 
             gui.textFields[2].isPressed(this);
